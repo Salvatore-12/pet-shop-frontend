@@ -3,6 +3,7 @@ import { ActionTypes,LOGIN } from "./action";
 const initialstate = {
     token: localStorage.getItem("token") || null,
     tiragraffiGatto: null,
+    guinzagli:null,
     error: null
 
 };
@@ -19,6 +20,12 @@ const reducer = (state = initialstate, action) => {
                 ...state,
                 tiragraffiGatto: action.payload,
             };
+            case ActionTypes.SET_GUINZAGLIO:
+                return {
+                    ...state,
+                    guinzagli: action.payload,
+                };
+
         case ActionTypes.SET_ERROR:
             return {
                 ...state,

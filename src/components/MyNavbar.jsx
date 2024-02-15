@@ -54,8 +54,8 @@ const MyNavbar = () => {
               overlay={
                 <Popover id="popover-basic" onMouseLeave={handleMouseLeave}>
                   <Popover.Body>
-                    <Link to="/action1" className="dropdown-item">
-                      Action 1
+                    <Link to="/guizagli" className="dropdown-item">
+                     guinzagli
                     </Link>
                     <Link to="/action2" className="dropdown-item">
                       Action 2

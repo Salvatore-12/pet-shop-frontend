@@ -8,6 +8,7 @@ import Homepage from './components/Home';
 import MyNavbar from './components/MyNavbar';
 import Tiragraffi from './components/Tiragraffi';
 import { useEffect, useState } from 'react';
+import Guinzaglio from './components/guinzaglio';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path='/tiragraffi' element={<Tiragraffi />}></Route>
+        <Route path='/guizagli'  element={<Guinzaglio/>}/>
       </Routes>
     </BrowserRouter>
   );

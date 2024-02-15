@@ -1,12 +1,49 @@
 
 export const ActionTypes = {
-    //1)
+    //1)SEZIONE GATTO
     SET_GATTO_TIRAGRAFFI: "SET_GATTO_TIRAGRAFFI",
+    //2)SEZIONE CANE
+    SET_GUINZAGLIO:" SET_GUINZAGLIO",
+//3)SETTAGIO GENERALE 
     SET_UTENTE_TOKEN: "SET_UTENTE_TOKEN",
     LOGOUT_UTENTE: "LOGOUT_UTENTE",
     SET_ERROR: "SET_ERROR"
-   
+
 };
+export const setGuinzagli=(guinzagli)=> ({
+    type: ActionTypes.SET_GUINZAGLIO,
+    payload: guinzagli
+});
+export const getGuinzagli= (token) => async (dispatch) => {
+    const URLGuinzagli = "http://localhost:3001/prodotti/prodotti-cane-guinzagli";
+try {
+    const response = await fetch(URLGuinzagli, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setGuinzagli(data));
+        console.log("Dati ricevuti:", data);
+        return data;
+    } else {
+        const errorMessage = await response.text();
+        if (response.status === 401) {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+        } else {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+        }
+        throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+    }
+} catch (error) {
+    console.error("Errore:", error);
+    // Invia un'azione di errore al reducer
+    dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+}};
 
 export const setError = (errorMessage) => ({
     type: ActionTypes.SET_ERROR,
@@ -32,7 +69,7 @@ export const setGattoTiragraffi = (tiragraffi) => ({
 export const LOGIN = "LOGIN"
 
 export const login = (body) => {
-        return async (dispatch) => {
+    return async (dispatch) => {
         const URL = "http://localhost:3001/auth/login"
         try {
             const res = await fetch(URL, {
@@ -63,7 +100,7 @@ export const getGattoTiragraffio = (token) => async (dispatch) => {
         const response = await fetch(URL, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`, 
+                Authorization: `Bearer ${token}`,
             }
         });
         if (response.ok) {
@@ -82,7 +119,7 @@ export const getGattoTiragraffio = (token) => async (dispatch) => {
             }
             throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
         }
-     } catch (error) {
+    } catch (error) {
         console.error("Errore:", error);
         // Invia un'azione di errore al reducer
         dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
