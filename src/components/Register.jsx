@@ -38,7 +38,7 @@ const Register = () => {
         console.log(data);
         alert("Registered correctly!");
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 500);
       })
       .catch((err) => {
@@ -46,15 +46,17 @@ const Register = () => {
       });
   };
   return (
-    <div className="background-image"
-         style={{
+    <div
+      className="background-image"
+      style={{
         backgroundImage: `url("https://images.unsplash.com/photo-1513013156887-d2bf241c8c82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTcwfHxjYW5lJTIwaGQlMjBvcnJpenpvbnRhbGV8ZW58MHx8MHx8fDA%3D")`,
         minHeight: "100vh",
         backgroundSize: "cover",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-     }}>
+      }}
+    >
       <Container
         className="immagine fw-bold text-success w-100 fw-bolder "
         style={{
@@ -132,6 +134,18 @@ const Register = () => {
                     type="submit"
                   >
                     Registrati
+                  </Button>
+                </Col>
+                <Col md={2}>
+                  <Button
+                    className="text-bg-success text-black border-0 fw-medium ms-4"
+                    type="submit"
+                    onClick={(e)=>{
+                    e.preventDefault();
+                    navigate("/");
+                    }}
+                  >
+                    Esci
                   </Button>
                 </Col>
               </Row>
