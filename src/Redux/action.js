@@ -2,14 +2,90 @@
 export const ActionTypes = {
     //1)SEZIONE GATTO
     SET_GATTO_TIRAGRAFFI: "SET_GATTO_TIRAGRAFFI",
+    SET_CIOTOLE_GATTO:"SET_CIOTOLE_GATTO",
     //2)SEZIONE CANE
     SET_GUINZAGLIO:" SET_GUINZAGLIO",
-//3)SETTAGIO GENERALE 
+    //3)SEZIONE UCCELLO
+    SET_GABBIE_UCCELLI:"SET_GABBIE_UCCELLI",
+//4)SETTAGIO GENERALE 
     SET_UTENTE_TOKEN: "SET_UTENTE_TOKEN",
     LOGOUT_UTENTE: "LOGOUT_UTENTE",
     SET_ERROR: "SET_ERROR"
 
 };
+
+export const setCiotoleGatto=(ciotoleGatto)=>({
+    type: ActionTypes.SET_GABBIE_UCCELLI,
+    payload: ciotoleGatto});
+
+export const setGabbieUccelli=(gabbie)=>({
+    type: ActionTypes.SET_GABBIE_UCCELLI,
+    payload: gabbie
+});
+
+export const getCiotoleGatto= (token) => async (dispatch) => {
+    const URLGuinzagli = "http://localhost:3001/prodotti/ciotole-gatto";
+try {
+    const response = await fetch(URLGuinzagli, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setCiotoleGatto(data));
+        console.log("Dati ricevuti:", data);
+        return data;
+    } else {
+        const errorMessage = await response.text();
+        if (response.status === 401) {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+        } else {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+        }
+        throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+    }
+} catch (error) {
+    console.error("Errore:", error);
+    // Invia un'azione di errore al reducer
+    dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+}};
+
+
+export const getGabbieUccelli= (token) => async (dispatch) => {
+    const URLGuinzagli = "http://localhost:3001/prodotti/prodotti-gabbie-uccelli";
+try {
+    const response = await fetch(URLGuinzagli, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setGabbieUccelli(data));
+        console.log("Dati ricevuti:", data);
+        return data;
+    } else {
+        const errorMessage = await response.text();
+        if (response.status === 401) {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+        } else {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+        }
+        throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+    }
+} catch (error) {
+    console.error("Errore:", error);
+    // Invia un'azione di errore al reducer
+    dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+}};
+
 export const setGuinzagli=(guinzagli)=> ({
     type: ActionTypes.SET_GUINZAGLIO,
     payload: guinzagli

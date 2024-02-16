@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -39,7 +39,7 @@ const MyNavbar = () => {
           src="https://cdn-icons-png.flaticon.com/128/1076/1076928.png"
           className="logo"
         ></img>
-        <Navbar.Brand href="#">PetShop</Navbar.Brand>
+        <Navbar.Brand href="/">PetShop</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -47,6 +47,7 @@ const MyNavbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
+            <Nav.Link href="/home">Home</Nav.Link>
             <OverlayTrigger
               trigger="hover 'focus'"
               placement="bottom"
@@ -55,7 +56,7 @@ const MyNavbar = () => {
                 <Popover id="popover-basic" onMouseLeave={handleMouseLeave}>
                   <Popover.Body>
                     <Link to="/guizagli" className="dropdown-item">
-                     guinzagli
+                      guinzagli
                     </Link>
                     <Link to="/action2" className="dropdown-item">
                       Action 2
@@ -84,11 +85,20 @@ const MyNavbar = () => {
                     <Link to="/tiragraffi" className="dropdown-item">
                       Tiragraffi
                     </Link>
-                    <Link to="/another-action2" className="dropdown-item">
-                      Another Action 2
+                    <Link to="/ciotolegatto" className="dropdown-item">
+                      Ciotole
                     </Link>
-                    <Link to="/another-action3" className="dropdown-item">
-                      Another Action 3
+                    <Link to="/crocchetteGatto" className="dropdown-item">
+                     Crocchette per gatto
+                    </Link>
+                    <Link to="/ciboUmidoGatto" className="dropdown-item">
+                      Cibo umido per gatto
+                    </Link>
+                    <Link to="/giochiGatto" className="dropdown-item">
+                      giochi
+                    </Link>
+                    <Link to="/cuccieELettiniGatto" className="dropdown-item">
+                    Cuccie e lettini
                     </Link>
                   </Popover.Body>
                 </Popover>
@@ -111,8 +121,8 @@ const MyNavbar = () => {
                     <Link to="/mangime" className="dropdown-item">
                       Mangime
                     </Link>
-                    <Link to="/another-action2" className="dropdown-item">
-                      Another Action 2
+                    <Link to="/gabbie" className="dropdown-item">
+                      Gabbie
                     </Link>
                     <Link to="/another-action3" className="dropdown-item">
                       Another Action 3
@@ -130,7 +140,7 @@ const MyNavbar = () => {
             </OverlayTrigger>
           </Nav>
         </Navbar.Collapse>
-        <Form className="d-flex me-3">
+        <Form className="d-flex me-5 pe-4">
           <FormControl
             type="search"
             placeholder="Search"

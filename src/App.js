@@ -9,10 +9,14 @@ import MyNavbar from './components/MyNavbar';
 import Tiragraffi from './components/Tiragraffi';
 import { useEffect, useState } from 'react';
 import Guinzaglio from './components/guinzaglio';
+import GabbiePerUccelli from './prodotti per uccello/GabbiePerUccelli';
+
 
 
 function App() {
   const [jwtToken, setJwtToken] = useState(null);
+
+
 
   useEffect(() => {
     const cachedToken = localStorage.getItem('jwtToken');
@@ -36,10 +40,13 @@ function App() {
       <MyNavbar />
       <Routes>
         <Route path="/home" element={<Homepage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path='/tiragraffi' element={<Tiragraffi />}></Route>
-        <Route path='/guizagli'  element={<Guinzaglio/>}/>
+        <Route path='/guizagli' element={<Guinzaglio />} />
+        <Route path='/gabbie' element={<GabbiePerUccelli />} />
+        
+
       </Routes>
     </BrowserRouter>
   );

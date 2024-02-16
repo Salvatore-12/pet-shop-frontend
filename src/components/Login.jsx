@@ -87,6 +87,11 @@ const Login = () => {
                   <Button
                     className="text-bg-success text-black border-0 fw-medium"
                     type="submit"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/register");
+
+                    }}
                   >
                     Registrati
                   </Button>
