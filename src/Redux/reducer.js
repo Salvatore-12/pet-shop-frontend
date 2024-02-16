@@ -4,6 +4,9 @@ const initialstate = {
     token: localStorage.getItem("token") || null,
     tiragraffiGatto: null,
     ciotoleGatto:null,
+    cuccieLettiniGatto:null,
+    crocchetteGatto:null,
+    giochiGatto:null,
     guinzagli:null,
     gabbieUccelli:null,
     error: null
@@ -22,11 +25,31 @@ const reducer = (state = initialstate, action) => {
                 ...state,
                 tiragraffiGatto: action.payload,
             };
+
             case ActionTypes.SET_CIOTOLE_GATTO:
             return {
                 ...state,
                 ciotoleGatto: action.payload,
             };
+
+            case ActionTypes.SET_CUCCIELETTINI_GATTO:
+                return {
+                    ...state,
+                    cuccieLettiniGatto: action.payload,
+                };
+
+                case ActionTypes.SET_CROCCHETTE_GATTO:
+                    return {
+                        ...state,
+                        crocchetteGatto: action.payload,
+                    };
+                    
+                    case ActionTypes.SET_GIOCHI_GATTO:
+                return {
+                    ...state,
+                    giochiGatto: action.payload,
+                };
+
             case ActionTypes.SET_GUINZAGLIO:
                 return {
                     ...state,

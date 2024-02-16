@@ -10,6 +10,10 @@ import Tiragraffi from './components/Tiragraffi';
 import { useEffect, useState } from 'react';
 import Guinzaglio from './components/guinzaglio';
 import GabbiePerUccelli from './prodotti per uccello/GabbiePerUccelli';
+import GattoCiotole from './components/gattoCiotole';
+import CucciaGatto from './components/CuccieGatto';
+import CrochetteGatto from './components/CrocchetteGatto';
+
 
 
 
@@ -43,8 +47,12 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path='/tiragraffi' element={<Tiragraffi />}></Route>
+        <Route path="/ciotolegatto" element={<GattoCiotole/>}/>
+        <Route path="cuccieLettiniGatto" element={<CucciaGatto/>} />
+        <Route path='crocchetteGatto'  element={<CrochetteGatto/>}/>
         <Route path='/guizagli' element={<Guinzaglio />} />
         <Route path='/gabbie' element={<GabbiePerUccelli />} />
+
         
 
       </Routes>

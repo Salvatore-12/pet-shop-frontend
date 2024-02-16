@@ -89,7 +89,7 @@ const MyNavbar = () => {
                       Ciotole
                     </Link>
                     <Link to="/crocchetteGatto" className="dropdown-item">
-                     Crocchette per gatto
+                      Crocchette per gatto
                     </Link>
                     <Link to="/ciboUmidoGatto" className="dropdown-item">
                       Cibo umido per gatto
@@ -97,8 +97,8 @@ const MyNavbar = () => {
                     <Link to="/giochiGatto" className="dropdown-item">
                       giochi
                     </Link>
-                    <Link to="/cuccieELettiniGatto" className="dropdown-item">
-                    Cuccie e lettini
+                    <Link to="/cuccieLettiniGatto" className="dropdown-item">
+                      Cuccie e lettini
                     </Link>
                   </Popover.Body>
                 </Popover>

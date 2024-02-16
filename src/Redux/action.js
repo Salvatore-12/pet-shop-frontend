@@ -3,6 +3,9 @@ export const ActionTypes = {
     //1)SEZIONE GATTO
     SET_GATTO_TIRAGRAFFI: "SET_GATTO_TIRAGRAFFI",
     SET_CIOTOLE_GATTO:"SET_CIOTOLE_GATTO",
+    SET_CUCCIELETTINI_GATTO:"SET_CUCCIELETTINI_GATTO",
+    SET_GIOCHI_GATTO:"SET_GIOCHI_GATTO",
+    SET_CROCCHETTE_GATTO:"SET_CROCCHETTE_GATTO",
     //2)SEZIONE CANE
     SET_GUINZAGLIO:" SET_GUINZAGLIO",
     //3)SEZIONE UCCELLO
@@ -14,8 +17,83 @@ export const ActionTypes = {
 
 };
 
+export  const setCrocchetteGatto =(crocchetteGatto)=>({
+    type: ActionTypes.SET_CROCCHETTE_GATTO,
+    payload:crocchetteGatto
+});
+
+export const getCrocchetteGatto= (token) => async (dispatch) => {
+    const URLCrocchetteGatto = "http://localhost:3001/prodotti/crocchette-gatto";
+try {
+    const response = await fetch(URLCrocchetteGatto, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setCrocchetteGatto(data));
+        console.log("Dati ricevuti:", data);
+        return data;
+    } else {
+        const errorMessage = await response.text();
+        if (response.status === 401) {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+        } else {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+        }
+        throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+    }
+} catch (error) {
+    console.error("Errore:", error);
+    // Invia un'azione di errore al reducer
+    dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+}};
+
+
+
+export const setCuccieLettinoGatto=(CuccieLettinoGatto)=>({
+    type: ActionTypes.SET_CUCCIELETTINI_GATTO,
+    payload:CuccieLettinoGatto
+});
+
+export const getCuccieELettini= (token) => async (dispatch) => {
+    const URLCuccieLettiniGatto = "http://localhost:3001/prodotti/cuccie-lettini-gatto";
+try {
+    const response = await fetch(URLCuccieLettiniGatto, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setCuccieLettinoGatto(data));
+        console.log("Dati ricevuti:", data);
+        return data;
+    } else {
+        const errorMessage = await response.text();
+        if (response.status === 401) {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+        } else {
+            // Invia un'azione di errore al reducer
+            dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+        }
+        throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+    }
+} catch (error) {
+    console.error("Errore:", error);
+    // Invia un'azione di errore al reducer
+    dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+}};
+
+
 export const setCiotoleGatto=(ciotoleGatto)=>({
-    type: ActionTypes.SET_GABBIE_UCCELLI,
+    type: ActionTypes.SET_CIOTOLE_GATTO,
     payload: ciotoleGatto});
 
 export const setGabbieUccelli=(gabbie)=>({
@@ -24,9 +102,9 @@ export const setGabbieUccelli=(gabbie)=>({
 });
 
 export const getCiotoleGatto= (token) => async (dispatch) => {
-    const URLGuinzagli = "http://localhost:3001/prodotti/ciotole-gatto";
+    const URLgatto = "http://localhost:3001/prodotti/ciotole-gatto";
 try {
-    const response = await fetch(URLGuinzagli, {
+    const response = await fetch(URLgatto, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
