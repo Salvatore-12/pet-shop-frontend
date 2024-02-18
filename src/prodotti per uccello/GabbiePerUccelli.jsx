@@ -1,5 +1,5 @@
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
-import { getGabbieUccelli } from "../Redux/action";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { ActionTypes, getGabbieUccelli } from "../Redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -37,6 +37,18 @@ return(
           <ListGroup className="list-group-flush">
             <ListGroup.Item>Prezzo: €{prodotto.prezzo.toFixed(2)}</ListGroup.Item>
           </ListGroup>
+          <Card.Body>
+                    <Button
+                      onClick={() => {
+                        dispatch({
+                          type: ActionTypes.AGGIUNGI_ALCARRELLO,
+                          payload: prodotto,
+                        });
+                      }}
+                    >
+                      Aggiungi al carrello
+                    </Button>
+                  </Card.Body>
         </Card>
       </Col>
       ))

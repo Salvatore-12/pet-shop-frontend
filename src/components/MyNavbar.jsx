@@ -9,12 +9,12 @@ import {
   OverlayTrigger,
   Popover,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const MyNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(null);
   const [leaveTimer, setLeaveTimer] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     return () => {
       if (leaveTimer) clearTimeout(leaveTimer);
@@ -149,6 +149,12 @@ const MyNavbar = () => {
           />
           <Button variant="outline-success">Cerca</Button>
         </Form>
+        <Button onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/carrello");
+                    }}
+                  >vai al carrello
+                  </Button>
       </Container>
     </Navbar>
   );

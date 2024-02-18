@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGuinzagli } from "../Redux/action";
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { ActionTypes, getGuinzagli } from "../Redux/action";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 
 const Guinzaglio = () => {
   const token = useSelector((state) => state.token);
@@ -38,6 +38,18 @@ const Guinzaglio = () => {
             <ListGroup className="list-group-flush">
               <ListGroup.Item>Prezzo: €{prodotto.prezzo.toFixed(2)}</ListGroup.Item>
             </ListGroup>
+            <Card.Body>
+                    <Button
+                      onClick={() => {
+                        dispatch({
+                          type: ActionTypes.AGGIUNGI_ALCARRELLO,
+                          payload: prodotto,
+                        });
+                      }}
+                    >
+                      Aggiungi al carrello
+                    </Button>
+                  </Card.Body>
           </Card>
         </Col>
         ))

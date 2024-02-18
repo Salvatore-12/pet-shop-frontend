@@ -1,11 +1,14 @@
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getGattoTiragraffio } from "../Redux/action";
+import { ActionTypes, getGattoTiragraffio } from "../Redux/action";
 import { useEffect } from "react";
 
 const Tiragraffi = () => {
   const token = useSelector((state) => state.token);
   const tiragraffiGatto = useSelector((state) => state.tiragraffiGatto);
+  const carrelloId = useSelector((state) =>
+    state.carrello ? state.carrello.id : null
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,6 +17,7 @@ const Tiragraffi = () => {
       console.log("ecco il token", token);
     }
   }, [dispatch, token]);
+  console.log("Stato di Redux:", { token, tiragraffiGatto });
 
   return (
     <div>
@@ -42,8 +46,19 @@ const Tiragraffi = () => {
                     <ListGroup.Item>
                       Prezzo: €{prodotto.prezzo.toFixed(2)}
                     </ListGroup.Item>
-                    {/* Altri dettagli del prodotto se necessario */}
                   </ListGroup>
+                  <Card.Body>
+                    <Button
+                      onClick={() => {
+                        dispatch({
+                          type: ActionTypes.AGGIUNGI_ALCARRELLO,
+                          payload: prodotto,
+                        });
+                      }}
+                    >
+                      Aggiungi al carrello
+                    </Button>
+                  </Card.Body>
                 </Card>
               </Col>
             ))

@@ -13,6 +13,7 @@ import GabbiePerUccelli from './prodotti per uccello/GabbiePerUccelli';
 import GattoCiotole from './components/gattoCiotole';
 import CucciaGatto from './components/CuccieGatto';
 import CrochetteGatto from './components/CrocchetteGatto';
+import Carrello from './carrello/Carrello';
 
 
 
@@ -52,6 +53,7 @@ function App() {
         <Route path='crocchetteGatto'  element={<CrochetteGatto/>}/>
         <Route path='/guizagli' element={<Guinzaglio />} />
         <Route path='/gabbie' element={<GabbiePerUccelli />} />
+        <Route path='/carrello' element={<Carrello/>}/>
 
         
 
