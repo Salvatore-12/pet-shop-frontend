@@ -18,6 +18,7 @@ const Tiragraffi = () => {
     }
   }, [dispatch, token]);
   console.log("Stato di Redux:", { token, tiragraffiGatto });
+  
 
   return (
     <div>

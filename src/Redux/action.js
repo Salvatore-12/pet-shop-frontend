@@ -16,11 +16,67 @@ export const ActionTypes = {
     LOGOUT_UTENTE: "LOGOUT_UTENTE",
     SET_ERROR: "SET_ERROR",
     //5)CARRELLO
-    AGGIUNGI_ALCARRELLO:" AGGIUNGI_ALCARRELLO"
+    AGGIUNGI_ALCARRELLO: " AGGIUNGI_ALCARRELLO",
+    SET_ORDINE: 'SET_ORDINE',
    
+ 
+
 
 };
 
+
+export const setOrdini = (ordini) => ({
+    type: ActionTypes.SET_ORDINE,
+    payload: ordini
+});
+
+export const aggiungiOrdineAlCarrello = (ordine) => ({
+    type: ActionTypes.AGGIUNGI_ORDINE_AL_CARRELLO,
+    payload: ordine
+});
+export const getOrdini = (token) => async (dispatch) => {
+    try {
+        const response = await fetch('http://localhost:3001/ordine/utente', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Errore durante il recupero degli ordini');
+        }
+
+        const ordini = await response.json();
+        dispatch({ type: ActionTypes.SET_ORDINE, payload: ordini });
+    } catch (error) {
+        console.error('Errore durante il recupero degli ordini:', error);
+    }
+};
+export const aggiungiOrdine = (token,body) => {
+    return async (dispatch) => {
+        const URL = "http://localhost:3001/ordine/crea-ordine"
+        try {
+            const res = await fetch(URL, {
+                method: "POST",
+                body: JSON.stringify(body),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (res.ok) {
+                const data = await res.json()
+                console.log(data)
+                dispatch({ type: ActionTypes.AGGIUNGI_ALCARRELLO, payload: data });
+            } else {
+                throw new Error("Something went wrong.");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
 
 export const setCrocchetteGatto = (crocchetteGatto) => ({
     type: ActionTypes.SET_CROCCHETTE_GATTO,

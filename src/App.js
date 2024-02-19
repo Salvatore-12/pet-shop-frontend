@@ -14,6 +14,7 @@ import GattoCiotole from './components/gattoCiotole';
 import CucciaGatto from './components/CuccieGatto';
 import CrochetteGatto from './components/CrocchetteGatto';
 import Carrello from './carrello/Carrello';
+import Ordine from './carrello/Ordine';
 
 
 
@@ -54,7 +55,7 @@ function App() {
         <Route path='/guizagli' element={<Guinzaglio />} />
         <Route path='/gabbie' element={<GabbiePerUccelli />} />
         <Route path='/carrello' element={<Carrello/>}/>
-
+        <Route path='/ordine' element={<Ordine/>}/>
         
 
       </Routes>

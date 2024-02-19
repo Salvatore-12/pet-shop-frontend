@@ -1,21 +1,34 @@
-import { useSelector } from "react-redux";
-import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
+import { aggiungiOrdine } from "../Redux/action";
+import { useNavigate } from "react-router-dom";
+
 
 const Carrello = () => {
   const token = useSelector((state) => state.token);
   const carrello = useSelector((state) => state.carrello);
- 
-  //const payload={listaProdotti:[]}
-  //const aggiungiprodottiOrdine =()=>{for (let i = 0; i < carrello.length; i++) {
-  //payload.listaProdotti.push(carrello[i].id)
-  //}}
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const procediAlOrdine = () => {
+    const listaProdotti = carrello.map((prodotto) => prodotto.idProdotto);
+    const body = { listaProdotti }; 
+    dispatch(aggiungiOrdine(token, body)); 
+    navigate('/ordine');
+  };
 
   const totale = () => {
+    if (!carrello || carrello.length === 0) {
+      return 0;
+    }
+  
     let totale = 0;
     for (let i = 0; i < carrello.length; i++) {
-      totale += carrello[i].prezzo;
+      if (carrello[i] && carrello[i].prezzo) {
+        totale += carrello[i].prezzo;
+      }
     }
-    return totale;
+    return typeof totale === 'number' ? totale : 0;
   };
   console.log(totale());
   return (
@@ -55,6 +68,7 @@ const Carrello = () => {
           <span className="f fs-4">
             totale da pagare:=€{totale().toFixed(2)}
           </span>
+          <Button onClick={procediAlOrdine}>Procedi all'ordine</Button>
         </div>
       ) : (
         <p>totale={totale}</p>

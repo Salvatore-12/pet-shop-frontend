@@ -10,6 +10,7 @@ const initialstate = {
     guinzagli: null,
     gabbieUccelli: null,
     carrello: [],
+    ordine: {},
     error: null,
     loadingAggiungiAlCarrello: true,
     errorAggiungiAlCarrello: null,
@@ -19,12 +20,22 @@ const initialstate = {
 console.log(initialstate);
 const reducer = (state = initialstate, action) => {
     switch (action.type) {
+       
+
+        case ActionTypes.SET_ORDINE:
+            console.log('Dati ordine ricevuti:', action.payload)
+            return {
+                ...state,
+                ordine: action.payload
+            };
+      
         case ActionTypes.AGGIUNGI_ALCARRELLO:
             return {
                 ...state,
                 carrello: [...state.carrello, action.payload]
 
             };
+        
         case ActionTypes.SET_UTENTE_TOKEN:
             return {
                 ...state,
