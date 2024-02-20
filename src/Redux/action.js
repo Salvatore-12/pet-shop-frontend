@@ -7,6 +7,7 @@ export const ActionTypes = {
     SET_CUCCIELETTINI_GATTO: "SET_CUCCIELETTINI_GATTO",
     SET_GIOCHI_GATTO: "SET_GIOCHI_GATTO",
     SET_CROCCHETTE_GATTO: "SET_CROCCHETTE_GATTO",
+    //SET_CIBOUMIDO_GATTO:" SET_CIBOUMIDO_GATTO",
     //2)SEZIONE CANE
     SET_GUINZAGLIO: " SET_GUINZAGLIO",
     //3)SEZIONE UCCELLO
@@ -18,8 +19,8 @@ export const ActionTypes = {
     //5)CARRELLO
     AGGIUNGI_ALCARRELLO: " AGGIUNGI_ALCARRELLO",
     SET_ORDINE: 'SET_ORDINE',
-   
- 
+    AGGIUNGI_ULTIMO_ORDINE:"AGGIUNGI_ULTIMO_ORDINE",
+    SVUOTA_CARRELLO:"SVUOTA_CARRELLO"
 
 
 };
@@ -29,11 +30,8 @@ export const setOrdini = (ordini) => ({
     type: ActionTypes.SET_ORDINE,
     payload: ordini
 });
+ 
 
-export const aggiungiOrdineAlCarrello = (ordine) => ({
-    type: ActionTypes.AGGIUNGI_ORDINE_AL_CARRELLO,
-    payload: ordine
-});
 export const getOrdini = (token) => async (dispatch) => {
     try {
         const response = await fetch('http://localhost:3001/ordine/utente', {
@@ -68,7 +66,8 @@ export const aggiungiOrdine = (token,body) => {
             if (res.ok) {
                 const data = await res.json()
                 console.log(data)
-                dispatch({ type: ActionTypes.AGGIUNGI_ALCARRELLO, payload: data });
+                localStorage.setItem("idOrdine",data.idOrdine) 
+                return localStorage.getItem("idOrdine")
             } else {
                 throw new Error("Something went wrong.");
             }

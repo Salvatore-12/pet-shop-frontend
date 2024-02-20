@@ -55,7 +55,7 @@ function App() {
         <Route path='/guizagli' element={<Guinzaglio />} />
         <Route path='/gabbie' element={<GabbiePerUccelli />} />
         <Route path='/carrello' element={<Carrello/>}/>
-        <Route path='/ordine' element={<Ordine/>}/>
+        <Route path='/ordine/:idOrdine' element={<Ordine/>}/>
         
 
       </Routes>

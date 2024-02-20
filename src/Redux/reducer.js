@@ -14,13 +14,24 @@ const initialstate = {
     error: null,
     loadingAggiungiAlCarrello: true,
     errorAggiungiAlCarrello: null,
+    utimoOrdine:null
 
 
 };
 console.log(initialstate);
 const reducer = (state = initialstate, action) => {
     switch (action.type) {
-       
+        case ActionTypes.SVUOTA_CARRELLO:
+            return {
+                ...state,
+                carrello: []
+            };
+
+        case ActionTypes.AGGIUNGI_ULTIMO_ORDINE:
+            return {
+                ...state,
+                ultimoOrdine: action.payload
+            };
 
         case ActionTypes.SET_ORDINE:
             console.log('Dati ordine ricevuti:', action.payload)

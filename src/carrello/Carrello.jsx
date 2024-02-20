@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
-import { aggiungiOrdine } from "../Redux/action";
+import { ActionTypes, aggiungiOrdine } from "../Redux/action";
 import { useNavigate } from "react-router-dom";
-
 
 const Carrello = () => {
   const token = useSelector((state) => state.token);
@@ -12,23 +11,26 @@ const Carrello = () => {
 
   const procediAlOrdine = () => {
     const listaProdotti = carrello.map((prodotto) => prodotto.idProdotto);
-    const body = { listaProdotti }; 
-    dispatch(aggiungiOrdine(token, body)); 
-    navigate('/ordine');
+    const body = { listaProdotti };
+    dispatch(aggiungiOrdine(token, body)).then((data) => {
+      console.log(data);
+      navigate("/ordine/" + data);
+    });
+    dispatch({ type: ActionTypes.SVUOTA_CARRELLO });
   };
 
   const totale = () => {
     if (!carrello || carrello.length === 0) {
       return 0;
     }
-  
+
     let totale = 0;
     for (let i = 0; i < carrello.length; i++) {
       if (carrello[i] && carrello[i].prezzo) {
         totale += carrello[i].prezzo;
       }
     }
-    return typeof totale === 'number' ? totale : 0;
+    return typeof totale === "number" ? totale : 0;
   };
   console.log(totale());
   return (

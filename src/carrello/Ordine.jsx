@@ -1,50 +1,84 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getOrdini } from "../Redux/action";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Ordine = () => {
   const token = useSelector((state) => state.token);
-  const ordine = useSelector((state) => state.ordine);
-  console.log("tatam",ordine);
-  const dispatch = useDispatch();
+  console.log(token);
+  const param = useParams();
+  const [ultimoOrdine, setUltimoOrdine] = useState(null);
 
+  const getUltimoOrdine = () => {
+    const URL = "http://localhost:3001/ordine/" + param.idOrdine;
+
+    fetch(URL, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Errore nella richiesta");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setUltimoOrdine(data);
+      })
+      .catch((error) => {
+        console.error("Si è verificato un errore:", error);
+      });
+  };
   useEffect(() => {
-    dispatch(getOrdini(token));
-  }, [dispatch, token]);
+    getUltimoOrdine();
+  }, []);
   return (
     <div>
-    {ordine && ordine.length > 0 ? (
-      <div>
-        {ordine.map((singoloOrdine) => (
-          <div key={singoloOrdine.idOrdine}>
+      {ultimoOrdine ? (
+        <div>
+          <div>
             <h3>Ordine</h3>
-            <p>ID Ordine: {singoloOrdine.idOrdine}</p>
-            <p>Totale da pagare: €{singoloOrdine.totaleDaPagare}</p>
-            {singoloOrdine.utente && (
+            <p>ID Ordine: {ultimoOrdine.idOrdine}</p>
+            <p>Totale da pagare: €{ultimoOrdine.totaleDaPagare}</p>
+            {ultimoOrdine.utente && (
               <div>
-                <p>Utente: {singoloOrdine.utente.nome} {singoloOrdine.utente.cognome}</p>
-                <p>Email: {singoloOrdine.utente.email}</p>
-                <p>Indirizzo: {singoloOrdine.utente.indirizzo}</p>
+                <p>
+                  Utente: {ultimoOrdine.utente.nome}{" "}
+                  {ultimoOrdine.utente.cognome}
+                </p>
+                <p>Email: {ultimoOrdine.utente.email}</p>
+                <p>Indirizzo: {ultimoOrdine.utente.indirizzo}</p>
               </div>
             )}
             <h4>Dettagli ordine:</h4>
             <ul>
-              {singoloOrdine.dettagliOrdine && singoloOrdine.dettagliOrdine.map((dettaglio) => (
-                <li key={dettaglio.idProdotto}>
-                  <img src={dettaglio.immagine} alt={dettaglio.nome} style={{ maxWidth: "100px", maxHeight: "100px", marginRight: "10px" }} />
-                  <p>Nome prodotto: {dettaglio.nome}</p>
-                  <p>Descrizione: {dettaglio.descrizione}</p>
-                  <p>Prezzo: €{dettaglio.prezzo.toFixed(2)}</p>
-                </li>
-              ))}
+              {ultimoOrdine.dettagliOrdine &&
+                ultimoOrdine.dettagliOrdine.map((dettaglio) => (
+                  <li key={dettaglio.idProdotto}>
+                    <img
+                      src={dettaglio.immagine}
+                      alt={dettaglio.nome}
+                      style={{
+                        maxWidth: "100px",
+                        maxHeight: "100px",
+                        marginRight: "10px",
+                      }}
+                    />
+                    <p>Nome prodotto: {dettaglio.nome}</p>
+                    <p>Descrizione: {dettaglio.descrizione}</p>
+                    <p>Prezzo: €{dettaglio.prezzo.toFixed(2)}</p>
+                  </li>
+                ))}
             </ul>
           </div>
-        ))}
-      </div>
-    ) : (
-      <p>Non ci sono ordini disponibili.</p>
-    )}
-  </div>
+        </div>
+      ) : (
+        <p>Non ci sono ordini disponibili.</p>
+      )}
+    </div>
   );
 };
 export default Ordine;
