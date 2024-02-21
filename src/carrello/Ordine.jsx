@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getOrdini } from "../Redux/action";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

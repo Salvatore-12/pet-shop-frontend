@@ -8,6 +8,11 @@ const initialstate = {
     crocchetteGatto: null,
     giochiGatto: null,
     guinzagli: null,
+    ciotoleCane:null,
+    crocchetteCane:null,
+    ciboUmidoCane:null,
+    giochiCane:null,
+    cuccieCane:null,
     gabbieUccelli: null,
     carrello: [],
     ordine: {},
@@ -21,6 +26,37 @@ const initialstate = {
 console.log(initialstate);
 const reducer = (state = initialstate, action) => {
     switch (action.type) {
+
+        case ActionTypes.CUCCIE_CANE:
+            return {
+                ...state,
+                cuccieCane: action.payload,
+            };
+
+        case ActionTypes.SET_GIOCHI_CANE:
+            return {
+                ...state,
+                giochiCane: action.payload,
+            };
+
+        case ActionTypes.SET_CIBO_UMIDO_CANE:
+            return {
+                ...state,
+                ciboUmidoCane: action.payload,
+            };
+
+        case ActionTypes.SET_CROCCHETTE_CANE:
+            return {
+                ...state,
+                crocchetteCane: action.payload,
+            };
+
+        case ActionTypes.SET_CIOTOLE_CANE:
+            return {
+                ...state,
+                ciotoleCane: action.payload,
+            };
+
         case ActionTypes.SVUOTA_CARRELLO:
             return {
                 ...state,

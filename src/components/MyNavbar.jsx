@@ -9,12 +9,26 @@ import {
   OverlayTrigger,
   Popover,
 } from "react-bootstrap";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(null);
   const [leaveTimer, setLeaveTimer] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() !== "") {
+      navigate(`/risultati-perNome?parteDelNome=${encodeURIComponent(searchQuery)}`
+      );
+    }
+  };
+
   useEffect(() => {
     return () => {
       if (leaveTimer) clearTimeout(leaveTimer);
@@ -58,11 +72,23 @@ const MyNavbar = () => {
                     <Link to="/guizagli" className="dropdown-item">
                       guinzagli
                     </Link>
-                    <Link to="/action2" className="dropdown-item">
-                      Action 2
+                    <Link to="/ciotoleCane" className="dropdown-item">
+                      Ciotole
                     </Link>
-                    <Link to="/action3" className="dropdown-item">
-                      Action 3
+                    <Link to="/crocchetteCane" className="dropdown-item">
+                      Crocchette
+                    </Link>
+                    <Link to="/ciboUmidoCane" className="dropdown-item">
+                      Cibo umido
+                    </Link>
+                    <Link to="/giochiCane" className="dropdown-item">
+                     Giochi
+                    </Link>
+                    <Link to="/CuccieCane" className="dropdown-item">
+                    Cuccie e lettini
+                    </Link>
+                    <Link to="/abbigliamentoCane" className="dropdown-item">
+                      Abbigliamento
                     </Link>
                   </Popover.Body>
                 </Popover>
@@ -89,13 +115,13 @@ const MyNavbar = () => {
                       Ciotole
                     </Link>
                     <Link to="/crocchetteGatto" className="dropdown-item">
-                      Crocchette per gatto
+                      Crocchette
                     </Link>
                     <Link to="/ciboUmidoGatto" className="dropdown-item">
-                      Cibo umido per gatto
+                      Cibo umido 
                     </Link>
                     <Link to="/giochiGatto" className="dropdown-item">
-                      giochi
+                      Giochi
                     </Link>
                     <Link to="/cuccieLettiniGatto" className="dropdown-item">
                       Cuccie e lettini
@@ -125,7 +151,7 @@ const MyNavbar = () => {
                       Gabbie
                     </Link>
                     <Link to="/another-action3" className="dropdown-item">
-                      Another Action 3
+                      Accessori Gabbie
                     </Link>
                   </Popover.Body>
                 </Popover>
@@ -146,15 +172,21 @@ const MyNavbar = () => {
             placeholder="Search"
             className="me-3"
             aria-label="Search"
+            value={searchQuery}
+            onChange={handleInputChange}
           />
-          <Button variant="outline-success">Cerca</Button>
+          <Button variant="outline-success" onClick={handleSearch}>
+            Cerca
+          </Button>
         </Form>
-        <Button onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/carrello");
-                    }}
-                  >vai al carrello
-                  </Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/carrello");
+          }}
+        >
+          vai al carrello
+        </Button>
       </Container>
     </Navbar>
   );
