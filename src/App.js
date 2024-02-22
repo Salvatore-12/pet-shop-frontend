@@ -21,6 +21,10 @@ import CrocchettePerCane from './prodotti per il cane/CrocchettePerCane';
 import CiboUmidoCane from './prodotti per il cane/CiboUmidoCane';
 import GiochiCane from './prodotti per il cane/GiochiCane';
 import CuccieCani from './prodotti per il cane/CuccieCani';
+import CiboUmidoGatto from './components/CiboUmidoGatto';
+import GiochiGatto from './components/GiochiGatto';
+import MangimeUccelli from './prodotti per uccello/MangimeUccelli';
+import AccessoriGabbiePerUccelli from './prodotti per uccello/AccessoriGabbieUccelli';
 
 
 
@@ -67,6 +71,8 @@ function App() {
         <Route path="/ciotolegatto" element={<GattoCiotole />} />
         <Route path="cuccieLettiniGatto" element={<CucciaGatto />} />
         <Route path='crocchetteGatto' element={<CrochetteGatto />} />
+        <Route path='/ciboUmidoGatto' element={<CiboUmidoGatto/>}/>
+        <Route path='giochiGatto' element={<GiochiGatto/>} />
         <Route path='/guizagli' element={<Guinzaglio />} />
         <Route path='/ciotoleCane' element={<CiotoleCane />} />
         <Route path='/crocchetteCane' element={<CrocchettePerCane />} />
@@ -74,6 +80,8 @@ function App() {
         <Route path='/giochiCane'element={<GiochiCane/>}/>
         <Route path='/CuccieCane' element={<CuccieCani/>}/>
         <Route path='/gabbie' element={<GabbiePerUccelli />} />
+        <Route path='/mangimeUccelli' element={<MangimeUccelli/>} />
+        <Route path='/accessoriGabbieUccelli' element={<AccessoriGabbiePerUccelli/>}/>
         <Route path='/carrello' element={<Carrello />} />
         <Route path='/ordine/:idOrdine' element={<Ordine />} />
         <Route path='/risultati-perNome' element={<FormRisultati />} />

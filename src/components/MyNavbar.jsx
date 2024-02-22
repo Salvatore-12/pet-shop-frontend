@@ -144,13 +144,13 @@ const MyNavbar = () => {
               overlay={
                 <Popover id="popover-basic" onMouseLeave={handleMouseLeave}>
                   <Popover.Body>
-                    <Link to="/mangime" className="dropdown-item">
+                    <Link to="/mangimeUccelli" className="dropdown-item">
                       Mangime
                     </Link>
                     <Link to="/gabbie" className="dropdown-item">
                       Gabbie
                     </Link>
-                    <Link to="/another-action3" className="dropdown-item">
+                    <Link to="/accessoriGabbieUccelli" className="dropdown-item">
                       Accessori Gabbie
                     </Link>
                   </Popover.Body>

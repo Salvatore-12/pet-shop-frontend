@@ -7,7 +7,7 @@ export const ActionTypes = {
     SET_CUCCIELETTINI_GATTO: "SET_CUCCIELETTINI_GATTO",
     SET_GIOCHI_GATTO: "SET_GIOCHI_GATTO",
     SET_CROCCHETTE_GATTO: "SET_CROCCHETTE_GATTO",
-    //SET_CIBOUMIDO_GATTO:" SET_CIBOUMIDO_GATTO",
+    SET_CIBOUMIDO_GATTO:" SET_CIBOUMIDO_GATTO",
     //2)SEZIONE CANE
     SET_GUINZAGLIO: " SET_GUINZAGLIO",
     SET_CIOTOLE_CANE: "SET_CIOTOLE_CANE",
@@ -17,6 +17,8 @@ export const ActionTypes = {
     CUCCIE_CANE: "CUCCIE_CANE",
     //3)SEZIONE UCCELLO
     SET_GABBIE_UCCELLI: "SET_GABBIE_UCCELLI",
+    MANGIME_UCCELLI:"MANGIME_UCCELLI",
+    ACCESSORI_GABBIE_UCCELLI:"ACCESSORI_GABBIE_UCCELLI",
     //4)SETTAGIO GENERALE 
     SET_UTENTE_TOKEN: "SET_UTENTE_TOKEN",
     LOGOUT_UTENTE: "LOGOUT_UTENTE",
@@ -28,6 +30,117 @@ export const ActionTypes = {
     SVUOTA_CARRELLO: "SVUOTA_CARRELLO"
 
 
+};
+
+export const setAccessoriGabbieUccelli = (AccessoriGabbieUccelli) => ({
+    type: ActionTypes.ACCESSORI_GABBIE_UCCELLI,
+    payload: AccessoriGabbieUccelli
+})
+
+export const getAccessoriGabbieUccelli = (token) => async (dispatch) => {
+    const URLMangime = "http://localhost:3001/prodotti/Accessori-gabbie-uccelli";
+    try {
+        const response = await fetch(URLMangime, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(setAccessoriGabbieUccelli(data));
+            console.log("Dati ricevuti:", data);
+            return data;
+        } else {
+            const errorMessage = await response.text();
+            if (response.status === 401) {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+            } else {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei mangimi" });
+            }
+            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+        }
+    } catch (error) {
+        console.error("Errore:", error);
+        // Invia un'azione di errore al reducer
+        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+    }
+};
+
+export const setMangimeUccelli = (MangimeUccelli) => ({
+    type: ActionTypes.MANGIME_UCCELLI,
+    payload: MangimeUccelli
+})
+
+export const getMangimeUccelli = (token) => async (dispatch) => {
+    const URLMangime = "http://localhost:3001/prodotti/mangime-uccelli";
+    try {
+        const response = await fetch(URLMangime, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(setMangimeUccelli(data));
+            console.log("Dati ricevuti:", data);
+            return data;
+        } else {
+            const errorMessage = await response.text();
+            if (response.status === 401) {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+            } else {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei mangimi" });
+            }
+            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+        }
+    } catch (error) {
+        console.error("Errore:", error);
+        // Invia un'azione di errore al reducer
+        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+    }
+};
+
+export const setCiboUmidoGatto = (CiboUmidoGatto) => ({
+    type: ActionTypes.SET_CIBOUMIDO_GATTO,
+    payload: CiboUmidoGatto
+})
+
+export const getCiboUmidoGatto = (token) => async (dispatch) => {
+    const URLCiboUmidoGatto = "http://localhost:3001/prodotti/cibo-umido-gatto";
+    try {
+        const response = await fetch(URLCiboUmidoGatto, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(setCiboUmidoGatto(data));
+            console.log("Dati ricevuti:", data);
+            return data;
+        } else {
+            const errorMessage = await response.text();
+            if (response.status === 401) {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+            } else {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+            }
+            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+        }
+    } catch (error) {
+        console.error("Errore:", error);
+        // Invia un'azione di errore al reducer
+        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+    }
 };
 
 export const setCuccieCane = (CuccieCane) => ({
@@ -266,6 +379,43 @@ export const aggiungiOrdine = (token, body) => {
             console.log(error);
         }
     };
+};
+
+export const setGiochiGatto = (giochiGatto) => ({
+    type: ActionTypes.SET_GIOCHI_GATTO,
+    payload: giochiGatto
+});
+
+export const getGiochiGatto = (token) => async (dispatch) => {
+    const URLGiochiGatto = "http://localhost:3001/prodotti/giochi-gatto";
+    try {
+        const response = await fetch(URLGiochiGatto, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(setGiochiGatto(data));
+            console.log("Dati ricevuti:", data);
+            return data;
+        } else {
+            const errorMessage = await response.text();
+            if (response.status === 401) {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+            } else {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+            }
+            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+        }
+    } catch (error) {
+        console.error("Errore:", error);
+        // Invia un'azione di errore al reducer
+        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+    }
 };
 
 export const setCrocchetteGatto = (crocchetteGatto) => ({

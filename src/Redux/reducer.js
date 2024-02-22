@@ -6,6 +6,7 @@ const initialstate = {
     ciotoleGatto: null,
     cuccieLettiniGatto: null,
     crocchetteGatto: null,
+    ciboUmidoGatto:null,
     giochiGatto: null,
     guinzagli: null,
     ciotoleCane:null,
@@ -14,6 +15,8 @@ const initialstate = {
     giochiCane:null,
     cuccieCane:null,
     gabbieUccelli: null,
+    accessoriGabbieUccelli:null,
+    mangimeUccelli:null,
     carrello: [],
     ordine: {},
     error: null,
@@ -26,6 +29,31 @@ const initialstate = {
 console.log(initialstate);
 const reducer = (state = initialstate, action) => {
     switch (action.type) {
+
+        
+        case ActionTypes.ACCESSORI_GABBIE_UCCELLI:
+            return {
+                ...state,
+                accessoriGabbieUccelli: action.payload,
+            };
+
+        case ActionTypes.MANGIME_UCCELLI:
+            return {
+                ...state,
+                mangimeUccelli: action.payload,
+            };
+
+        case ActionTypes.SET_GIOCHI_GATTO:
+            return {
+                ...state,
+                giochiGatto: action.payload,
+            };
+
+        case ActionTypes.SET_CIBOUMIDO_GATTO:
+            return {
+                ...state,
+                ciboUmidoGatto: action.payload,
+            };
 
         case ActionTypes.CUCCIE_CANE:
             return {
@@ -88,6 +116,7 @@ const reducer = (state = initialstate, action) => {
                 ...state,
                 token: action.payload,
             };
+
         case ActionTypes.SET_GATTO_TIRAGRAFFI:
             return {
                 ...state,
@@ -110,12 +139,6 @@ const reducer = (state = initialstate, action) => {
             return {
                 ...state,
                 crocchetteGatto: action.payload,
-            };
-
-        case ActionTypes.SET_GIOCHI_GATTO:
-            return {
-                ...state,
-                giochiGatto: action.payload,
             };
 
         case ActionTypes.SET_GUINZAGLIO:
