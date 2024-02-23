@@ -25,6 +25,7 @@ import CiboUmidoGatto from './components/CiboUmidoGatto';
 import GiochiGatto from './components/GiochiGatto';
 import MangimeUccelli from './prodotti per uccello/MangimeUccelli';
 import AccessoriGabbiePerUccelli from './prodotti per uccello/AccessoriGabbieUccelli';
+import PagamentoSuccesso from './components/PagamentoRiuscito';
 
 
 
@@ -84,6 +85,7 @@ function App() {
         <Route path='/accessoriGabbieUccelli' element={<AccessoriGabbiePerUccelli/>}/>
         <Route path='/carrello' element={<Carrello />} />
         <Route path='/ordine/:idOrdine' element={<Ordine />} />
+        <Route path="/successo" element={<PagamentoSuccesso/>} />
         <Route path='/risultati-perNome' element={<FormRisultati />} />
       </Routes>
     </BrowserRouter>

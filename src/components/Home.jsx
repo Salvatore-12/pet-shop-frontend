@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getGabbieUccelli, getGattoTiragraffio, getGuinzagli } from "../Redux/action";
+import {
+  getGabbieUccelli,
+  getGattoTiragraffio,
+  getGuinzagli,
+} from "../Redux/action";
 import { useEffect } from "react";
-import { Card, Carousel, Container, ListGroup } from "react-bootstrap";
+import { Card, Carousel, Container, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Guinzaglio from "./guinzaglio";
 
 const Homepage = () => {
   const token = useSelector((state) => state.token);
@@ -11,12 +14,12 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const guinzagli = useSelector((state) => state.guinzagli);
   const gabbieUccelli = useSelector((state) => state.gabbieUccelli);
-   
-    useEffect(() => {
-      if (token) {
-        dispatch(getGabbieUccelli(token));
-      }
-    }, [dispatch, token]);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getGabbieUccelli(token));
+    }
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (token) {
@@ -50,14 +53,22 @@ const Homepage = () => {
           {tiragraffiGatto ? (
             chunkArray(tiragraffiGatto, 5).map((chunk, index) => (
               <Carousel.Item key={index}>
+              
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
-                    <Card key={idx} className="custom-card">
+                    <Card
+                      key={idx}
+                      className="col-12 col-sm-6 col-md-4 col-lg-3 custom-card"
+                    >
                       <Card.Img
                         variant="top"
                         src={prodotto.immagine}
                         alt={prodotto.nome}
-                        style={{ height: "150px", objectFit: "cover" }}
+                        style={{
+                          height: "300px",
+                          width: "300px",
+                          objectFit: "cover",
+                        }}
                       />
                       <Card.Body>
                         <Card.Title className="custom-card-title">
@@ -69,8 +80,10 @@ const Homepage = () => {
                       </Card.Body>
                       <ListGroup className="list-group-flush"></ListGroup>
                     </Card>
+                   
                   ))}
                 </div>
+                
               </Carousel.Item>
             ))
           ) : (
@@ -92,12 +105,19 @@ const Homepage = () => {
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
-                    <Card key={idx} className="custom-card">
+                    <Card
+                      key={idx}
+                      className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card"
+                    >
                       <Card.Img
                         variant="top"
                         src={prodotto.immagine}
                         alt={prodotto.nome}
-                        style={{ height: "150px", objectFit: "cover" }}
+                        style={{
+                          height: "150px",
+                          width: "auto",
+                          objectFit: "cover",
+                        }}
                       />
                       <Card.Body>
                         <Card.Title className="custom-card-title">
@@ -131,7 +151,10 @@ const Homepage = () => {
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
-                    <Card key={idx} className="custom-card">
+                    <Card
+                      key={idx}
+                      className="col-12 col-sm-6 col-md-4 col-lg-2  custom-card"
+                    >
                       <Card.Img
                         variant="top"
                         src={prodotto.immagine}
@@ -159,7 +182,6 @@ const Homepage = () => {
           )}
         </Carousel>
       </Container>
-
     </div>
   );
 };

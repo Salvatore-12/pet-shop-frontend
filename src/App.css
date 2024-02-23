@@ -2,31 +2,37 @@
 margin-right: 1%;
 }
 /* Sezione settaggio card */
-.custom-card-body {
-  width: auto;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-
-.custom-card-title {
-  margin-bottom: 0.5rem;
-}
-
-.custom-card-text {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
 .custom-card {
   width: auto;
-  height: auto; 
+  height: 300px; /* Altezza fissa per tutte le card */
   display: flex;
   margin: 10px;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  overflow: hidden; /* Per evitare che l'immagine esca dalla card */
 }
+
+.custom-card-body {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrare il testo */
+}
+
+.custom-card-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem; /* Regolare la dimensione del titolo */
+  font-weight: bold;
+}
+
+.custom-card-text {
+  font-size: 1rem; /* Regolare la dimensione del testo */
+  font-weight: normal; /* Rimuovere il grassetto */
+}
+
+
+
 
 .App {
   text-align: center;

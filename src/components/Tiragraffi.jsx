@@ -18,7 +18,6 @@ const Tiragraffi = () => {
     }
   }, [dispatch, token]);
   console.log("Stato di Redux:", { token, tiragraffiGatto });
-  
 
   return (
     <div>
@@ -28,12 +27,19 @@ const Tiragraffi = () => {
           {tiragraffiGatto ? (
             tiragraffiGatto.map((prodotto, index) => (
               <Col md={3} key={index}>
-                <Card style={{ width: "15rem", marginBottom: "20px" }}>
+                <Card
+                  className="col-12 col-sm-6 col-md-4 col-lg-3"
+                  style={{ width: "200px", marginBottom: "20px" }}
+                >
                   <Card.Img
                     variant="top"
                     src={prodotto.immagine}
                     alt={prodotto.nome}
-                    style={{ height: "200px", objectFit: "cover" }}
+                    style={{
+                      height: "200px",
+                      width: "200px",
+                      objectFit: "cover",
+                    }}
                   />
                   <Card.Body className="custom-card-body">
                     <Card.Title className="custom-card-title">
