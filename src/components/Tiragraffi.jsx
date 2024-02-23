@@ -2,6 +2,7 @@ import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionTypes, getGattoTiragraffio } from "../Redux/action";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Tiragraffi = () => {
   const token = useSelector((state) => state.token);
@@ -27,10 +28,12 @@ const Tiragraffi = () => {
           {tiragraffiGatto ? (
             tiragraffiGatto.map((prodotto, index) => (
               <Col md={3} key={index}>
+                
                 <Card
                   className="col-12 col-sm-6 col-md-4 col-lg-3"
                   style={{ width: "200px", marginBottom: "20px" }}
                 >
+                  <Link to={`/prodotti/${prodotto.idProdotto}`} className="text-black" style={{ textDecoration: 'none'}}>
                   <Card.Img
                     variant="top"
                     src={prodotto.immagine}
@@ -54,6 +57,7 @@ const Tiragraffi = () => {
                       Prezzo: €{prodotto.prezzo.toFixed(2)}
                     </ListGroup.Item>
                   </ListGroup>
+                  </Link>
                   <Card.Body>
                     <Button
                       onClick={() => {
@@ -67,6 +71,7 @@ const Tiragraffi = () => {
                     </Button>
                   </Card.Body>
                 </Card>
+               
               </Col>
             ))
           ) : (

@@ -26,6 +26,7 @@ import GiochiGatto from './components/GiochiGatto';
 import MangimeUccelli from './prodotti per uccello/MangimeUccelli';
 import AccessoriGabbiePerUccelli from './prodotti per uccello/AccessoriGabbieUccelli';
 import PagamentoSuccesso from './components/PagamentoRiuscito';
+import Prodotto from './components/Prodotto';
 
 
 
@@ -68,6 +69,7 @@ function App() {
         <Route path="/home" element={<Homepage />} />
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/prodotti/:idProdotto" element={<Prodotto/>}  />
         <Route path='/tiragraffi' element={<Tiragraffi />}></Route>
         <Route path="/ciotolegatto" element={<GattoCiotole />} />
         <Route path="cuccieLettiniGatto" element={<CucciaGatto />} />

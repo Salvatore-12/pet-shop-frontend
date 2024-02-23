@@ -36,7 +36,7 @@ const Register = () => {
       })
       .then((data) => {
         console.log(data);
-        alert("Registered correctly!");
+        alert("utente registrato corretamente!");
         setTimeout(() => {
           navigate("/");
         }, 500);

@@ -51,9 +51,8 @@ const Homepage = () => {
       <Container>
         <Carousel>
           {tiragraffiGatto ? (
-            chunkArray(tiragraffiGatto, 5).map((chunk, index) => (
+            chunkArray(tiragraffiGatto, 3).map((chunk, index) => (
               <Carousel.Item key={index}>
-              
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
@@ -65,8 +64,8 @@ const Homepage = () => {
                         src={prodotto.immagine}
                         alt={prodotto.nome}
                         style={{
-                          height: "300px",
-                          width: "300px",
+                          height: "auto",
+                          width: "auto",
                           objectFit: "cover",
                         }}
                       />
@@ -80,10 +79,8 @@ const Homepage = () => {
                       </Card.Body>
                       <ListGroup className="list-group-flush"></ListGroup>
                     </Card>
-                   
                   ))}
                 </div>
-                
               </Carousel.Item>
             ))
           ) : (
@@ -101,7 +98,7 @@ const Homepage = () => {
       <Container>
         <Carousel>
           {guinzagli ? (
-            chunkArray(guinzagli, 5).map((chunk, index) => (
+            chunkArray(guinzagli, 3).map((chunk, index) => (
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
@@ -147,7 +144,7 @@ const Homepage = () => {
       <Container>
         <Carousel>
           {gabbieUccelli ? (
-            chunkArray(gabbieUccelli, 5).map((chunk, index) => (
+            chunkArray(gabbieUccelli, 3).map((chunk, index) => (
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (

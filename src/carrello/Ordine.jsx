@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import StripeOption1 from "../components/Stripe";
+import { Card, Col, Row } from "react-bootstrap";
 
 const Ordine = () => {
   const token = useSelector((state) => state.token);
   console.log(token);
   const param = useParams();
   const [ultimoOrdine, setUltimoOrdine] = useState(null);
+  
 
   const getUltimoOrdine = () => {
     const URL = "http://localhost:3001/ordine/" + param.idOrdine;
@@ -34,50 +37,70 @@ const Ordine = () => {
   useEffect(() => {
     getUltimoOrdine();
   }, []);
+
   return (
-    <div>
-      {ultimoOrdine ? (
-        <div>
-          <div>
-            <h3>Ordine</h3>
-            <p>ID Ordine: {ultimoOrdine.idOrdine}</p>
-            <p>Totale da pagare: €{ultimoOrdine.totaleDaPagare}</p>
+    <div className="container">
+    {ultimoOrdine ? (
+      <div>
+        <h3>Dettagli dell'ordine</h3>
+
+        <div className="separator"></div>
+
+        <Card>
+          <Card.Body>
+            <Card.Title>ID Ordine: {ultimoOrdine.idOrdine}</Card.Title>
+            <Card.Text>Totale da pagare: €{ultimoOrdine.totaleDaPagare}</Card.Text>
+          </Card.Body>
+        </Card>
+
+        <div className="separator"></div>
+
+        <Card>
+          <Card.Body>
             {ultimoOrdine.utente && (
-              <div>
-                <p>
-                  Utente: {ultimoOrdine.utente.nome}{" "}
-                  {ultimoOrdine.utente.cognome}
-                </p>
-                <p>Email: {ultimoOrdine.utente.email}</p>
-                <p>Indirizzo: {ultimoOrdine.utente.indirizzo}</p>
-              </div>
+              <>
+                <Card.Title>Dati Utente</Card.Title>
+                <Card.Text>Nome: {ultimoOrdine.utente.nome} {ultimoOrdine.utente.cognome}</Card.Text>
+                <Card.Text>Email: {ultimoOrdine.utente.email}</Card.Text>
+                <Card.Text>Indirizzo: {ultimoOrdine.utente.indirizzo}</Card.Text>
+              </>
             )}
-            <h4>Dettagli ordine:</h4>
-            <ul>
+          </Card.Body>
+        </Card>
+
+        <div className="separator"></div>
+
+        <Card>
+          <Card.Body>
+            <Card.Title>Prodotti</Card.Title>
+            <Row>
               {ultimoOrdine.dettagliOrdine &&
                 ultimoOrdine.dettagliOrdine.map((dettaglio) => (
-                  <li key={dettaglio.idProdotto}>
-                    <img
-                      src={dettaglio.immagine}
-                      alt={dettaglio.nome}
-                      style={{
-                        maxWidth: "100px",
-                        maxHeight: "100px",
-                        marginRight: "10px",
-                      }}
-                    />
-                    <p>Nome prodotto: {dettaglio.nome}</p>
-                    <p>Descrizione: {dettaglio.descrizione}</p>
-                    <p>Prezzo: €{dettaglio.prezzo.toFixed(2)}</p>
-                  </li>
+                  <Col md={4} key={dettaglio.idProdotto}>
+                    <Card>
+                      <Card.Img variant="top" src={dettaglio.immagine} />
+                      <Card.Body>
+                        <Card.Title>{dettaglio.nome}</Card.Title>
+                        <Card.Text>{dettaglio.descrizione}</Card.Text>
+                        <Card.Text>Prezzo: €{dettaglio.prezzo.toFixed(2)}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Col>
                 ))}
-            </ul>
-          </div>
-        </div>
-      ) : (
-        <p>Non ci sono ordini disponibili.</p>
-      )}
-    </div>
+            </Row>
+          </Card.Body>
+        </Card>
+
+        <div className="separator"></div>
+
+        {/* Renderizza il componente StripeOption1 e passa i dati dell'ordine */}
+        <StripeOption1 ordine={ultimoOrdine} />
+      </div>
+    ) : (
+      <p>Non ci sono ordini disponibili.</p>
+    )}
+  </div>
+
   );
 };
 export default Ordine;

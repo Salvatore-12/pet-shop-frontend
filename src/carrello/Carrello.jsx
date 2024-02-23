@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { ActionTypes, aggiungiOrdine } from "../Redux/action";
 import { useNavigate } from "react-router-dom";
-import StripeOption1 from "../components/Stripe";
+
 
 const Carrello = () => {
   const token = useSelector((state) => state.token);
@@ -10,12 +10,7 @@ const Carrello = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
  
-  const prodottiPerIlCheckout = carrello.map((prodotto) => {
-    return {
-        price: prodotto.priceId,
-        quantity: 1
-    };
-});
+  
   const procediAlOrdine = () => {
     const listaProdotti = carrello.map((prodotto) => prodotto.idProdotto);
     const body = { listaProdotti };
@@ -80,8 +75,6 @@ const Carrello = () => {
             totale da pagare:=€{totale().toFixed(2)}
           </span>
           <Button onClick={procediAlOrdine}>Procedi all'ordine</Button>
-          <StripeOption1 prodottiPerIlCheckout={prodottiPerIlCheckout}/>
-          {/* <Button onClick={makePayment}>procedi al Pagamento</Button> */}
         </div>
       ) : (
         <p>totale={totale}</p>

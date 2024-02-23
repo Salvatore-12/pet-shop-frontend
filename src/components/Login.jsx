@@ -47,7 +47,7 @@ const Login = () => {
         <Row className="justify-content-evenly align-align-items-center w-50 h-50 mb-1 mt-5">
           <Col>
             <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3 text-black" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
@@ -57,7 +57,7 @@ const Login = () => {
                 <Form.Text className="text-muted"></Form.Text>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3 text-black" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"

@@ -31,7 +31,15 @@ margin-right: 1%;
   font-weight: normal; /* Rimuovere il grassetto */
 }
 
+.prodotto-image{
+height: 80%;
+}
 
+
+.text-custom{
+
+margin-top:10%;
+}
 
 
 .App {
