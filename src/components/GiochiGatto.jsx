@@ -1,7 +1,8 @@
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionTypes, getCiboUmidoGatto, getGiochiGatto } from "../Redux/action";
+import { ActionTypes,getGiochiGatto } from "../Redux/action";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 const GiochiGatto =() =>{
     const token = useSelector((state) => state.token);
     const giochiGatto = useSelector((state) => state.giochiGatto);
@@ -25,6 +26,7 @@ const GiochiGatto =() =>{
               giochiGatto.map((prodotto, index) => (
                 <Col md={3} key={index}>
                   <Card style={{ width: "15rem", marginBottom: "20px" }}>
+                  <Link  to={`/prodotti/${prodotto.idProdotto}`} className="text-black" style={{ textDecoration: 'none'}}>
                     <Card.Img
                       variant="top"
                       src={prodotto.immagine}
@@ -44,6 +46,7 @@ const GiochiGatto =() =>{
                         Prezzo: €{prodotto.prezzo.toFixed(2)}
                       </ListGroup.Item>
                     </ListGroup>
+                    </Link>
                     <Card.Body>
                       <Button
                         onClick={() => {

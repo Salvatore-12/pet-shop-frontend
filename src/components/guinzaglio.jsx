@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionTypes, getGuinzagli } from "../Redux/action";
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Guinzaglio = () => {
   const token = useSelector((state) => state.token);
@@ -23,6 +24,7 @@ const Guinzaglio = () => {
         guinzagli.map((prodotto, index) => (
             <Col md={3} key={index}>
           <Card style={{ width: "15rem", marginBottom: "20px" }}>
+            <Link  to={`/prodotti/${prodotto.idProdotto}`} className="text-black" style={{ textDecoration: 'none'}}>
             <Card.Img
               variant="top"
               src={prodotto.immagine}
@@ -38,6 +40,7 @@ const Guinzaglio = () => {
             <ListGroup className="list-group-flush">
               <ListGroup.Item>Prezzo: €{prodotto.prezzo.toFixed(2)}</ListGroup.Item>
             </ListGroup>
+            </Link>
             <Card.Body>
                     <Button
                       onClick={() => {

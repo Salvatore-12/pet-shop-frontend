@@ -2,6 +2,7 @@ import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { ActionTypes, getAccessoriGabbieUccelli } from "../Redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const AccessoriGabbiePerUccelli=()=>{
     const token = useSelector((state) => state.token);
@@ -22,6 +23,7 @@ return(
       accessoriGabbieUccelli.map((prodotto, index) => (
           <Col md={3} key={index}>
         <Card style={{ width: "15rem", marginBottom: "20px" }}>
+        <Link to={`/prodotti/${prodotto.idProdotto}`} className="text-black" style={{ textDecoration: 'none'}}>
           <Card.Img
             variant="top"
             src={prodotto.immagine}
@@ -37,6 +39,7 @@ return(
           <ListGroup className="list-group-flush">
             <ListGroup.Item>Prezzo: €{prodotto.prezzo.toFixed(2)}</ListGroup.Item>
           </ListGroup>
+          </Link>
           <Card.Body>
                     <Button
                       onClick={() => {
