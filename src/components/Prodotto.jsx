@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ActionTypes } from "../Redux/action";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const Prodotto = () => {
   const token = useSelector((state) => state.token);
@@ -37,11 +38,21 @@ const Prodotto = () => {
   if (!prodotto) {
     return <p>Caricamento in corso...</p>;
   }
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   return (
     <Container fluid className="mt-3">
       <Card style={{ maxWidth: "80%" }}>
-        {" "}
-        {/* Imposta la larghezza massima della card */}
+        <Link
+          to="#"
+          onClick={handleGoBack}
+          style={{ position: "absolute", left: "10px", top: "10px" }}
+          className="text-success"
+        >
+          <ArrowLeft size={20} />
+        </Link>
         <Row>
           <Col sm={6}>
             <Card.Img
@@ -65,17 +76,19 @@ const Prodotto = () => {
                 <Card.Text>Categoria: {prodotto.categoria}</Card.Text>
                 <Card.Text>Tipo di animale: {prodotto.tipoAnimale}</Card.Text>
               </Card.Body>
+
+              <Button
+                onClick={() => {
+                  dispatch({
+                    type: ActionTypes.AGGIUNGI_ALCARRELLO,
+                    payload: prodotto,
+                  });
+                }}
+                className="bg-success text-black fw-medium ms-3  border-1 border-black "
+              >
+                Aggiungi al carrello
+              </Button>
             </Card.Body>
-            <Button
-                      onClick={() => {
-                        dispatch({
-                          type: ActionTypes.AGGIUNGI_ALCARRELLO,
-                          payload: prodotto,
-                        });
-                      }}
-                    >
-                      Aggiungi al carrello
-                    </Button>
           </Col>
         </Row>
       </Card>

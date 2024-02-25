@@ -184,6 +184,7 @@ const MyNavbar = () => {
             e.preventDefault();
             navigate("/carrello");
           }}
+          className="bg-success text-black fw-medium fw-medium ms-3  border-1 border-black"
         >
           vai al carrello
         </Button>
