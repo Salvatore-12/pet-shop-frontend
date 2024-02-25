@@ -15,16 +15,21 @@ const MyNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(null);
   const [leaveTimer, setLeaveTimer] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [jwtToken, setJwtToken] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  const handleLogout = () => {
+    localStorage.clear();
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim() !== "") {
-      navigate(`/risultati-perNome?parteDelNome=${encodeURIComponent(searchQuery)}`
+      navigate(
+        `/risultati-perNome?parteDelNome=${encodeURIComponent(searchQuery)}`
       );
     }
   };
@@ -53,7 +58,7 @@ const MyNavbar = () => {
           src="https://cdn-icons-png.flaticon.com/128/1076/1076928.png"
           className="logo"
         ></img>
-        <Navbar.Brand href="/">PetShop</Navbar.Brand>
+        <Navbar.Brand href="/home">PetShop</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -82,10 +87,10 @@ const MyNavbar = () => {
                       Cibo umido
                     </Link>
                     <Link to="/giochiCane" className="dropdown-item">
-                     Giochi
+                      Giochi
                     </Link>
                     <Link to="/CuccieCane" className="dropdown-item">
-                    Cuccie e lettini
+                      Cuccie e lettini
                     </Link>
                     <Link to="/abbigliamentoCane" className="dropdown-item">
                       Abbigliamento
@@ -118,7 +123,7 @@ const MyNavbar = () => {
                       Crocchette
                     </Link>
                     <Link to="/ciboUmidoGatto" className="dropdown-item">
-                      Cibo umido 
+                      Cibo umido
                     </Link>
                     <Link to="/giochiGatto" className="dropdown-item">
                       Giochi
@@ -150,7 +155,10 @@ const MyNavbar = () => {
                     <Link to="/gabbie" className="dropdown-item">
                       Gabbie
                     </Link>
-                    <Link to="/accessoriGabbieUccelli" className="dropdown-item">
+                    <Link
+                      to="/accessoriGabbieUccelli"
+                      className="dropdown-item"
+                    >
                       Accessori Gabbie
                     </Link>
                   </Popover.Body>
@@ -179,6 +187,11 @@ const MyNavbar = () => {
             Cerca
           </Button>
         </Form>
+        <Button
+          variant="outline-success"
+          href="/"
+          onClick={handleLogout}
+        >esci</Button>
         <Button
           onClick={(e) => {
             e.preventDefault();
