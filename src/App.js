@@ -39,8 +39,9 @@ import Prodotto from './components/Prodotto';
 
 function App() {
   const [jwtToken, setJwtToken] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
   
-  
+
   useEffect(() => {
     const cachedToken = localStorage.getItem('jwtToken');
     if (cachedToken) {
@@ -57,9 +58,7 @@ function App() {
     localStorage.removeItem('jwtToken');
     setJwtToken(null);
   };
-  const searchFunction = async (searchTerm) => {
-    // Implementa la logica di ricerca qui, se necessario
-  };
+ 
 
   return (
 
@@ -88,7 +87,7 @@ function App() {
         <Route path='/carrello' element={<Carrello />} />
         <Route path='/ordine/:idOrdine' element={<Ordine />} />
         <Route path="/successo" element={<PagamentoSuccesso/>} />
-        <Route path='/risultati-perNome' element={<FormRisultati />} />
+        <Route path='/risultati-perNome' element={<FormRisultati  searchResults={searchResults} />} />
       </Routes>
     </BrowserRouter>
 

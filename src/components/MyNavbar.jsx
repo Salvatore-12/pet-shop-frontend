@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
@@ -9,30 +9,49 @@ import {
   OverlayTrigger,
   Popover,
 } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const MyNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(null);
+  const token = useSelector((state) => state.token);
   const [leaveTimer, setLeaveTimer] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [jwtToken, setJwtToken] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const [searchResults, setSearchResults] = useState([]);
+  const [error, setError] = useState(null);
 
-
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
   const handleLogout = () => {
     localStorage.clear();
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim() !== "") {
-      navigate(
-        `/risultati-perNome?parteDelNome=${encodeURIComponent(searchQuery)}`
-      );
+  const handleSearch = () => {
+    const url = `http://localhost:3001/prodotti/prodotti-per-parte-del-nome?parteDelNome=${encodeURIComponent(
+      searchTerm
+    )}`;
+
+    if (!token) {
+      console.error("Token non trovato.");
+      return;
     }
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+
+    fetch(url, {
+      method: "GET",
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Dati ricevuti dalla chiamata API:", data);
+        setSearchResults(data);
+        navigate("/risultati-perNome", { state: { searchResults: data } });
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   useEffect(() => {
@@ -54,7 +73,8 @@ const MyNavbar = () => {
   };
 
   const location = useLocation();
-  const isLoginOrRegister = location.pathname === '/' || location.pathname === '/register';
+  const isLoginOrRegister =
+    location.pathname === "/" || location.pathname === "/register";
 
   if (isLoginOrRegister) {
     return null;
@@ -189,18 +209,19 @@ const MyNavbar = () => {
             placeholder="Search"
             className="me-3"
             aria-label="Search"
-            value={searchQuery}
-            onChange={handleInputChange}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Button variant="outline-success" onClick={handleSearch}>
+          <Button
+            variant="outline-success"
+            type="button"
+            onClick={handleSearch}
+          >
             Cerca
           </Button>
         </Form>
-        <Button
-          variant="outline-success"
-          href="/"
-          onClick={handleLogout}
-        >esci
+        <Button variant="outline-success" href="/" onClick={handleLogout}>
+          esci
         </Button>
         <Button
           onClick={(e) => {
