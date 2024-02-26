@@ -2,15 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
 import { ActionTypes, aggiungiOrdine } from "../Redux/action";
 import { useNavigate } from "react-router-dom";
-
+import { FaTrash } from "react-icons/fa";
 
 const Carrello = () => {
   const token = useSelector((state) => state.token);
   const carrello = useSelector((state) => state.carrello);
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
-  
+
   const procediAlOrdine = () => {
     const listaProdotti = carrello.map((prodotto) => prodotto.idProdotto);
     const body = { listaProdotti };
@@ -21,7 +20,12 @@ const Carrello = () => {
     dispatch({ type: ActionTypes.SVUOTA_CARRELLO });
   };
 
-  
+  const rimuoviDalCarrello = (idProdotto) => {
+    dispatch({
+      type: ActionTypes.RIMUOVI_DAL_CARRELLO,
+      payload: idProdotto,
+    });
+  };
 
   const totale = () => {
     if (!carrello || carrello.length === 0) {
@@ -60,12 +64,21 @@ const Carrello = () => {
                       <Card.Text className="custom-card-text">
                         {prodotto.descrizione}
                       </Card.Text>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
+
                       <ListGroup.Item>
                         Prezzo: €{prodotto.prezzo.toFixed(2)}
                       </ListGroup.Item>
-                    </ListGroup>
+
+                      <FaTrash
+                        style={{
+                          color: "red",
+                          cursor: "pointer",
+                          display: "block",
+                          margin: "auto",
+                        }}
+                        onClick={() => rimuoviDalCarrello(prodotto.idProdotto)}
+                      />
+                    </Card.Body>
                   </Card>
                 </Col>
               );

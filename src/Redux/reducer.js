@@ -30,7 +30,13 @@ console.log(initialstate);
 const reducer = (state = initialstate, action) => {
     switch (action.type) {
 
-        
+        case ActionTypes.RIMUOVI_DAL_CARRELLO:
+            return {
+              ...state,
+              carrello: state.carrello.filter(
+                (prodotto) => prodotto.idProdotto !== action.payload
+              ),
+            };      
         case ActionTypes.ACCESSORI_GABBIE_UCCELLI:
             return {
                 ...state,
