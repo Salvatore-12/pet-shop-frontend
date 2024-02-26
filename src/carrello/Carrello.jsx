@@ -70,8 +70,8 @@ const Carrello = () => {
                       </ListGroup.Item>
 
                       <FaTrash
+                       className="text-success"
                         style={{
-                          color: "red",
                           cursor: "pointer",
                           display: "block",
                           margin: "auto",

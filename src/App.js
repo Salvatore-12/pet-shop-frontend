@@ -39,9 +39,8 @@ import Prodotto from './components/Prodotto';
 
 function App() {
   const [jwtToken, setJwtToken] = useState(null);
-
-
-
+  
+  
   useEffect(() => {
     const cachedToken = localStorage.getItem('jwtToken');
     if (cachedToken) {
@@ -70,7 +69,7 @@ function App() {
         <Route path="/home" element={<Homepage />} />
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/prodotti/:idProdotto" element={<Prodotto/>}  />
+        <Route path="/prodotti/:idProdotto" element={<Prodotto/>} />
         <Route path='/tiragraffi' element={<Tiragraffi />}></Route>
         <Route path="/ciotolegatto" element={<GattoCiotole />} />
         <Route path="cuccieLettiniGatto" element={<CucciaGatto />} />

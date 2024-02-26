@@ -9,7 +9,7 @@ import {
   OverlayTrigger,
   Popover,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const MyNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(null);
@@ -17,6 +17,7 @@ const MyNavbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [jwtToken, setJwtToken] = useState(null);
   const navigate = useNavigate();
+
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -51,6 +52,14 @@ const MyNavbar = () => {
     }, 500);
     setLeaveTimer(timer);
   };
+
+  const location = useLocation();
+  const isLoginOrRegister = location.pathname === '/' || location.pathname === '/register';
+
+  if (isLoginOrRegister) {
+    return null;
+  }
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -191,7 +200,8 @@ const MyNavbar = () => {
           variant="outline-success"
           href="/"
           onClick={handleLogout}
-        >esci</Button>
+        >esci
+        </Button>
         <Button
           onClick={(e) => {
             e.preventDefault();

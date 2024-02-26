@@ -41,6 +41,16 @@ height: 80%;
 margin-top:10%;
 }
 
+.my-button:hover {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.my-button:active {
+  transform: scale(1.05) translateX(10px); /* Effetto di ingrandimento e spostamento al click */
+  transition: transform 0.3s ease;
+}
+
 
 .App {
   text-align: center;

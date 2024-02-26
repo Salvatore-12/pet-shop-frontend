@@ -4,26 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { ActionTypes } from "../Redux/action";
 import { ArrowLeft } from "react-bootstrap-icons";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 const Prodotto = () => {
   const token = useSelector((state) => state.token);
-  const { idProdotto } = useParams(); // Utilizzo di useParams per ottenere il parametro 'id' dall'URL
+  const { idProdotto } = useParams();
   const [prodotto, setProdotto] = useState(null);
   const dispatch = useDispatch();
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    // Verifica che l'ID sia una stringa valida prima di eseguire la chiamata API
+    // Verifico che l'ID sia una stringa valida prima di eseguire la chiamata API
     if (idProdotto && typeof idProdotto === "string") {
-      // Effettua una chiamata API per ottenere i dettagli del prodotto utilizzando l'ID
       fetch(`http://localhost:3001/prodotti/${idProdotto}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Aggiungi il token nell'intestazione Authorization
+          Authorization: `Bearer ${token}`,
         },
       })
         .then((response) => response.json())
         .then((data) => {
           console.log("Dati ricevuti:", data);
-          setProdotto(data); // Aggiorna lo stato con i dettagli del prodotto ottenuti dalla chiamata API
+          setProdotto(data);
         })
         .catch((error) => {
           console.error(
@@ -32,14 +33,24 @@ const Prodotto = () => {
           );
         });
     }
-  }, [idProdotto, token]); // Esegui l'effetto solo quando l'ID o il token cambiano
-
-  // Se il prodotto è ancora in fase di caricamento o non è stato trovato, mostra un messaggio di caricamento
+  }, [idProdotto, token]);
   if (!prodotto) {
     return <p>Caricamento in corso...</p>;
   }
   const handleGoBack = () => {
     window.history.back();
+  };
+
+  const handleAddToCart = (prodotto,) => {
+    setIsAnimating(true);
+    dispatch({
+      type: ActionTypes.AGGIUNGI_ALCARRELLO,
+      payload: prodotto,
+    });
+
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 1000); 
   };
 
   return (
@@ -76,18 +87,14 @@ const Prodotto = () => {
                 <Card.Text>Categoria: {prodotto.categoria}</Card.Text>
                 <Card.Text>Tipo di animale: {prodotto.tipoAnimale}</Card.Text>
               </Card.Body>
-
-              <Button
-                onClick={() => {
-                  dispatch({
-                    type: ActionTypes.AGGIUNGI_ALCARRELLO,
-                    payload: prodotto,
-                  });
-                }}
-                className="bg-success text-black fw-medium ms-3  border-1 border-black "
-              >
-                Aggiungi al carrello
-              </Button>
+              <RiShoppingCartLine
+                      onClick={() =>
+                        handleAddToCart(prodotto)
+                      }
+                      className={`my-cart-icon my-button text-success ${
+                        isAnimating ? "animate" : ""
+                      }`}
+                    />
             </Card.Body>
           </Col>
         </Row>

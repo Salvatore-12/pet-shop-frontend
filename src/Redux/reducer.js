@@ -30,6 +30,13 @@ console.log(initialstate);
 const reducer = (state = initialstate, action) => {
     switch (action.type) {
 
+        case ActionTypes.AGGIUNGI_ALCARRELLO:
+            return {
+                ...state,
+                carrello: [...state.carrello, action.payload]
+
+            };
+
         case ActionTypes.RIMUOVI_DAL_CARRELLO:
             return {
               ...state,
@@ -108,13 +115,6 @@ const reducer = (state = initialstate, action) => {
             return {
                 ...state,
                 ordine: action.payload
-            };
-      
-        case ActionTypes.AGGIUNGI_ALCARRELLO:
-            return {
-                ...state,
-                carrello: [...state.carrello, action.payload]
-
             };
         
         case ActionTypes.SET_UTENTE_TOKEN:

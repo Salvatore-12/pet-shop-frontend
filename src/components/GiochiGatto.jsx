@@ -1,12 +1,14 @@
 import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionTypes,getGiochiGatto } from "../Redux/action";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { RiShoppingCartLine } from "react-icons/ri";
 const GiochiGatto =() =>{
     const token = useSelector((state) => state.token);
     const giochiGatto = useSelector((state) => state.giochiGatto);
     const dispatch = useDispatch();
+    const [isAnimating, setIsAnimating] = useState(false);
   
     useEffect(() => {
       if (token) {
@@ -15,7 +17,18 @@ const GiochiGatto =() =>{
       }
     }, [dispatch, token]);
   
-    
+    const handleAddToCart = (prodotto) => {
+      setIsAnimating(true);
+      dispatch({
+        type: ActionTypes.AGGIUNGI_ALCARRELLO,
+        payload: prodotto,
+      });
+  
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 1000);
+    };
+  
   
     return (
       <div>
@@ -48,16 +61,12 @@ const GiochiGatto =() =>{
                     </ListGroup>
                     </Link>
                     <Card.Body>
-                      <Button
-                        onClick={() => {
-                          dispatch({
-                            type: ActionTypes.AGGIUNGI_ALCARRELLO,
-                            payload: prodotto,
-                          });
-                        }}
-                      >
-                        Aggiungi al carrello
-                      </Button>
+                    <RiShoppingCartLine
+                      onClick={() => handleAddToCart(prodotto)}
+                      className={`my-cart-icon my-button text-success ${
+                        isAnimating ? "animate" : ""
+                      }`}
+                    />
                     </Card.Body>
                   </Card>
                 </Col>

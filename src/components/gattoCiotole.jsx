@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { ActionTypes, getCiotoleGatto } from "../Redux/action";
-import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 const GattoCiotole=()=>{
 const token = useSelector((state) => state.token);
 const ciotoleGatto = useSelector((state) => state.ciotoleGatto);
 const dispatch = useDispatch();
+const [isAnimating, setIsAnimating] = useState(false);
 
 useEffect(() => {
 if (token) {
@@ -16,6 +18,18 @@ if (token) {
 }
 
 },[dispatch, token])
+
+const handleAddToCart = (prodotto) => {
+  setIsAnimating(true);
+  dispatch({
+    type: ActionTypes.AGGIUNGI_ALCARRELLO,
+    payload: prodotto,
+  });
+
+  setTimeout(() => {
+    setIsAnimating(false);
+  }, 1000);
+};
 
 return(
 
@@ -45,16 +59,12 @@ return(
             </ListGroup>
             </Link>
             <Card.Body>
-                    <Button
-                      onClick={() => {
-                        dispatch({
-                          type: ActionTypes.AGGIUNGI_ALCARRELLO,
-                          payload: prodotto,
-                        });
-                      }}
-                    >
-                      Aggiungi al carrello
-                    </Button>
+            <RiShoppingCartLine
+                      onClick={() => handleAddToCart(prodotto)}
+                      className={`my-cart-icon my-button text-success ${
+                        isAnimating ? "animate" : ""
+                      }`}
+                    />
                   </Card.Body>
           </Card>
         </Col>
