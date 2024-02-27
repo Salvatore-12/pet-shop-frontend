@@ -105,7 +105,7 @@ const MyNavbar = () => {
                 <Popover id="popover-basic" onMouseLeave={handleMouseLeave}>
                   <Popover.Body>
                     <Link to="/guizagli" className="dropdown-item">
-                      guinzagli
+                      Guinzagli
                     </Link>
                     <Link to="/ciotoleCane" className="dropdown-item">
                       Ciotole
