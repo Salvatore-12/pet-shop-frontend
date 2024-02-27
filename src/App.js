@@ -27,6 +27,7 @@ import MangimeUccelli from './prodotti per uccello/MangimeUccelli';
 import AccessoriGabbiePerUccelli from './prodotti per uccello/AccessoriGabbieUccelli';
 import PagamentoSuccesso from './components/PagamentoRiuscito';
 import Prodotto from './components/Prodotto';
+import Footer from './components/Footer';
 
 
 
@@ -89,6 +90,7 @@ function App() {
         <Route path="/successo" element={<PagamentoSuccesso/>} />
         <Route path='/risultati-perNome' element={<FormRisultati  searchResults={searchResults} />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
 
   );

@@ -51,6 +51,14 @@ margin-top:10%;
   transition: transform 0.3s ease;
 }
 
+.icons{
+  font-size: 25px;
+  margin: 34px;
+}
+.cart{
+  font-size: 30px;
+  margin-right: 1050px;
+}
 
 .App {
   text-align: center;
