@@ -44,7 +44,7 @@ const Carrello = () => {
   return (
     <div>
       {carrello ? (
-        <div>
+        <div className="mb-5">
           <h2>Ecco il tuo carrello</h2>
           <Row className="ms-2">
             {carrello.map((prodotto, i) => {
@@ -87,7 +87,7 @@ const Carrello = () => {
           <span className="f fs-4">
             totale da pagare:=€{totale().toFixed(2)}
           </span>
-          <Button onClick={procediAlOrdine}>Procedi all'ordine</Button>
+          <Button className="ms-3 mb-3 bg-success text-black" onClick={procediAlOrdine}>Procedi all'ordine</Button>
         </div>
       ) : (
         <p>totale={totale}</p>

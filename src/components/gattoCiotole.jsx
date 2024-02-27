@@ -34,13 +34,13 @@ const handleAddToCart = (prodotto) => {
 return(
 
 <div>
-      <h2>Ciotole per Gatti</h2>
+      <h2>Ciotole Per Gatti</h2>
       <Container>
         <Row>
       {ciotoleGatto ? (
         ciotoleGatto.map((prodotto, index) => (
             <Col md={3} key={index}>
-          <Card style={{ width: "15rem", marginBottom: "20px" }}>
+          <Card className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate" style={{ width: "15rem", marginBottom: "20px" }}>
           <Link  to={`/prodotti/${prodotto.idProdotto}`} className="text-black" style={{ textDecoration: 'none'}}>
             <Card.Img
               variant="top"
@@ -49,9 +49,9 @@ return(
               style={{ height: "200px", objectFit: "cover" }}
             />
             <Card.Body className="custom-card-body">
-              <Card.Title className="custom-card-title">{prodotto.nome}
+              <Card.Title className="text-truncate fs-6 w-100">{prodotto.nome}
               </Card.Title>
-              <Card.Text className="custom-card-text">{prodotto.descrizione}
+              <Card.Text className="custom-card-text text-truncate">{prodotto.descrizione}
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">

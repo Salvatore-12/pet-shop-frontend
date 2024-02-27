@@ -21,16 +21,16 @@ const FormRisultati = () => {
               className="text-black"
               style={{ textDecoration: "none" }}
             >
-              <Card className="mb-2" style={{ width: "18rem" }}>
+              <Card className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"  style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top"
                   src={prodotto.immagine}
                   alt="Immagine prodotto"
                   className="img-fluid"
                 />
-                <Card.Body>
-                  <Card.Title>{prodotto.nome}</Card.Title>
-                  <Card.Text>{prodotto.descrizione}</Card.Text>
+                <Card.Body className="custom-card-body">
+                  <Card.Title className="text-truncate fs-6 w-100">{prodotto.nome}</Card.Title>
+                  <Card.Text className="custom-card-text text-truncate">{prodotto.descrizione}</Card.Text>
                   <Card.Text>
                     <strong>Prezzo:</strong> {prodotto.prezzo} €
                   </Card.Text>

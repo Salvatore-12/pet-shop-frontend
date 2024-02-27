@@ -31,15 +31,15 @@ const Tiragraffi = () => {
 
   return (
     <div>
-      <h2>Tiragraffi per gatti</h2>
+      <h2>Tiragraffi Per Gatti</h2>
       <Container>
         <Row>
           {tiragraffiGatto ? (
             tiragraffiGatto.map((prodotto, index) => (
               <Col md={3} key={index}>
                 <Card
-                  className="col-12 col-sm-6 col-md-4 col-lg-3"
-                  style={{ width: "200px", marginBottom: "20px" }}
+                  className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"
+                  style={{ width: "15rem", marginBottom: "20px" }}
                 >
                   <Link
                     to={`/prodotti/${prodotto.idProdotto}`}
@@ -57,10 +57,10 @@ const Tiragraffi = () => {
                       }}
                     />
                     <Card.Body className="custom-card-body">
-                      <Card.Title className="custom-card-title">
+                      <Card.Title className="text-truncate fs-6 w-100">
                         {prodotto.nome}
                       </Card.Title>
-                      <Card.Text className="custom-card-text">
+                      <Card.Text className="custom-card-text text-truncate">
                         {prodotto.descrizione}
                       </Card.Text>
                     </Card.Body>

@@ -44,20 +44,20 @@ const Homepage = () => {
 
   return (
     //1)ROW CAROUSEL
-    <div className="bg bg-warning-subtle">
+    <div className="pb-2 ms-4">
       <Link to="/tiragraffi" style={{ textDecoration: "none" }}>
         <h2 className="mt-2 mb-2 text-black">Tiragraffi Per Gatto</h2>
       </Link>
       <Container>
         <Carousel>
           {tiragraffiGatto ? (
-            chunkArray(tiragraffiGatto, 3).map((chunk, index) => (
+            chunkArray(tiragraffiGatto, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
-                      className="col-12 col-sm-6 col-md-4 col-lg-3 custom-card"
+                      className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"
                     >
                       <Card.Img
                         variant="top"
@@ -70,7 +70,7 @@ const Homepage = () => {
                         }}
                       />
                       <Card.Body>
-                        <Card.Title className="custom-card-title">
+                        <Card.Title className="custom-card-title text-truncate fs-6">
                           {prodotto.nome}
                         </Card.Title>
                         <ListGroup.Item className="custom-card-text">
@@ -98,13 +98,13 @@ const Homepage = () => {
       <Container>
         <Carousel>
           {guinzagli ? (
-            chunkArray(guinzagli, 3).map((chunk, index) => (
+            chunkArray(guinzagli, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
-                      className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card"
+                      className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"
                     >
                       <Card.Img
                         variant="top"
@@ -117,7 +117,7 @@ const Homepage = () => {
                         }}
                       />
                       <Card.Body>
-                        <Card.Title className="custom-card-title">
+                        <Card.Title className="custom-card-title text-truncate fs-6">
                           {prodotto.nome}
                         </Card.Title>
                         <ListGroup.Item className="custom-card-text">
@@ -144,13 +144,13 @@ const Homepage = () => {
       <Container>
         <Carousel>
           {gabbieUccelli ? (
-            chunkArray(gabbieUccelli, 3).map((chunk, index) => (
+            chunkArray(gabbieUccelli, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
                 <div className="d-flex justify-content-between  align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
-                      className="col-12 col-sm-6 col-md-4 col-lg-2  custom-card"
+                      className="col-12 col-sm-6 col-md-4 col-lg-2  custom-card text-truncate"
                     >
                       <Card.Img
                         variant="top"
@@ -159,7 +159,7 @@ const Homepage = () => {
                         style={{ height: "150px", objectFit: "cover" }}
                       />
                       <Card.Body>
-                        <Card.Title className="custom-card-title">
+                        <Card.Title className="custom-card-title text-truncate fs-6">
                           {prodotto.nome}
                         </Card.Title>
                         <ListGroup.Item className="custom-card-text">

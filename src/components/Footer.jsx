@@ -22,10 +22,7 @@ import {
 
 const Footer = () => {
   return (
-    <Container
-      fluid
-      className="footerInter bg  bg-success-subtle text-black pt-3 ms-0 me-0"
-    >
+    <Container fluid className=" bg-success-subtle text-black pt-3 ms-0 me-0">
       <Nav>
         <div className="d-flex flex-row ms-4 ps-5 mt-4 mt-3">
           <span className="d-flex flex-column ms-4 ps-4">
@@ -48,7 +45,6 @@ const Footer = () => {
             <p>Privacy Policy</p>
             <p>Cookie Policy</p>
           </span>
-
         </div>
 
         <div className="icons">

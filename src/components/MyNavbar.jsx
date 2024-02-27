@@ -17,9 +17,9 @@ const MyNavbar = () => {
   const token = useSelector((state) => state.token);
   const [leaveTimer, setLeaveTimer] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
@@ -81,7 +81,7 @@ const MyNavbar = () => {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-success-subtle">
       <Container fluid>
         <img
           src="https://cdn-icons-png.flaticon.com/128/1076/1076928.png"
@@ -213,14 +213,14 @@ const MyNavbar = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <Button
-            variant="outline-success"
+            variant="outline-success text-black"
             type="button"
             onClick={handleSearch}
           >
             Cerca
           </Button>
         </Form>
-        <Button variant="outline-success" href="/" onClick={handleLogout}>
+        <Button variant="outline-success text-black" href="/" onClick={handleLogout}>
           esci
         </Button>
         <Button
