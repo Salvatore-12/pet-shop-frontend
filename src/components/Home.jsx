@@ -5,7 +5,7 @@ import {
   getGuinzagli,
 } from "../Redux/action";
 import { useEffect } from "react";
-import { Card, Carousel, Container, ListGroup, Row } from "react-bootstrap";
+import { Card, Carousel, Container, ListGroup} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
