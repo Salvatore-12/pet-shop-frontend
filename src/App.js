@@ -28,6 +28,7 @@ import AccessoriGabbiePerUccelli from './prodotti per uccello/AccessoriGabbieUcc
 import PagamentoSuccesso from './components/PagamentoRiuscito';
 import Prodotto from './components/Prodotto';
 import Footer from './components/Footer';
+import AbbigliamentoCane from './prodotti per uccello/AbbigliamentoCane';
 
 
 
@@ -82,6 +83,7 @@ function App() {
         <Route path='/ciboUmidoCane'   element={<CiboUmidoCane/>}/>
         <Route path='/giochiCane'element={<GiochiCane/>}/>
         <Route path='/CuccieCane' element={<CuccieCani/>}/>
+        <Route path='/AbbigliamentoCane' element={<AbbigliamentoCane/>}/>
         <Route path='/gabbie' element={<GabbiePerUccelli />} />
         <Route path='/mangimeUccelli' element={<MangimeUccelli/>} />
         <Route path='/accessoriGabbieUccelli' element={<AccessoriGabbiePerUccelli/>}/>

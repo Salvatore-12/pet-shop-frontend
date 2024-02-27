@@ -14,6 +14,7 @@ const initialstate = {
     ciboUmidoCane:null,
     giochiCane:null,
     cuccieCane:null,
+    abbigliamentoCane:null,
     gabbieUccelli: null,
     accessoriGabbieUccelli:null,
     mangimeUccelli:null,
@@ -66,6 +67,12 @@ const reducer = (state = initialstate, action) => {
             return {
                 ...state,
                 ciboUmidoGatto: action.payload,
+            };
+            
+        case ActionTypes.ABBIGLIAMENTO_CANE:
+            return {
+                ...state,
+                abbigliamentoCane: action.payload,
             };
 
         case ActionTypes.CUCCIE_CANE:

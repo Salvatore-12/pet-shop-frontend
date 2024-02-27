@@ -33,7 +33,7 @@ const MangimeUccelli = () => {
 
   return (
     <div>
-      <h2>Mangime Per Uccelli</h2>
+      <h2 className="titolo-prodotto">Mangime Per Uccelli</h2>
       <Container>
         <Row>
       {mangimeUccelli ? (

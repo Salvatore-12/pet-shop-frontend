@@ -31,7 +31,7 @@ const CrocchettePerCane = () => {
 
   return (
     <div>
-      <h2>Crocchette Per Cani</h2>
+      <h2 className="titolo-prodotto">Crocchette Per Cani</h2>
       <Container>
         <Row>
           {CrocchetteCane ? (

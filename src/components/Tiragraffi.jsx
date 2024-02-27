@@ -16,7 +16,7 @@ const Tiragraffi = () => {
       dispatch(getGattoTiragraffio(token));
     }
   }, [dispatch, token]);
- 
+
   const handleAddToCart = (prodotto) => {
     setIsAnimating(true);
     dispatch({
@@ -31,7 +31,7 @@ const Tiragraffi = () => {
 
   return (
     <div>
-      <h2>Tiragraffi Per Gatti</h2>
+      <h2 className="titolo-prodotto">Tiragraffi Per Gatti</h2>
       <Container>
         <Row>
           {tiragraffiGatto ? (

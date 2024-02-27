@@ -15,6 +15,7 @@ export const ActionTypes = {
     SET_CIBO_UMIDO_CANE: " SET_CIBO_UMIDO_CANE",
     SET_GIOCHI_CANE: "SET_GIOCHI_CANE",
     CUCCIE_CANE: "CUCCIE_CANE",
+    ABBIGLIAMENTO_CANE:"ABBIGLIAMENTO_CANE",
     //3)SEZIONE UCCELLO
     SET_GABBIE_UCCELLI: "SET_GABBIE_UCCELLI",
     MANGIME_UCCELLI:"MANGIME_UCCELLI",
@@ -31,6 +32,42 @@ export const ActionTypes = {
     SVUOTA_CARRELLO: "SVUOTA_CARRELLO"
 
 
+};
+export const setAbbigliamentoCane = (AbbigliamentoCane) => ({
+    type: ActionTypes.ABBIGLIAMENTO_CANE,
+    payload: AbbigliamentoCane
+})
+
+export const getAbbigliamentoCane = (token) => async (dispatch) => {
+    const URLMangime = "http://localhost:3001/prodotti/abbigliamento-cane";
+    try {
+        const response = await fetch(URLMangime, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(setAbbigliamentoCane(data));
+            console.log("Dati ricevuti:", data);
+            return data;
+        } else {
+            const errorMessage = await response.text();
+            if (response.status === 401) {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+            } else {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei mangimi" });
+            }
+            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+        }
+    } catch (error) {
+        console.error("Errore:", error);
+        // Invia un'azione di errore al reducer
+        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+    }
 };
 
 export const setAccessoriGabbieUccelli = (AccessoriGabbieUccelli) => ({

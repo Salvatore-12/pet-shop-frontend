@@ -44,7 +44,7 @@ const Homepage = () => {
 
   return (
     //1)ROW CAROUSEL
-    <div className="pb-2 ms-4">
+    <div className="ms-4">
       <Link to="/tiragraffi" style={{ textDecoration: "none" }}>
         <h2 className="mt-2 mb-2 text-black">Tiragraffi Per Gatto</h2>
       </Link>

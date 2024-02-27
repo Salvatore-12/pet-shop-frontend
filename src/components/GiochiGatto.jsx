@@ -32,7 +32,7 @@ const GiochiGatto =() =>{
   
     return (
       <div>
-        <h2>Giochi Per Gatti</h2>
+        <h2 className="titolo-prodotto">Giochi Per Gatti</h2>
         <Container>
           <Row>
             {giochiGatto ? (

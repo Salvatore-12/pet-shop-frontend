@@ -32,7 +32,7 @@ const CucciaGatto = ()=>{
   
     return (
       <div>
-        <h2>Cuccie Per Gatti</h2>
+        <h2 className="titolo-prodotto">Cuccie Per Gatti</h2>
         <Container>
           <Row>
             {cuccieLettiniGatto ? (

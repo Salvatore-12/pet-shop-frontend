@@ -31,7 +31,7 @@ const Guinzaglio = () => {
 
   return (
     <div>
-      <h2>Guinzagli Per Cani</h2>
+      <h2 className="titolo-prodotto">Guinzagli Per Cani</h2>
       <Container>
         <Row>
           {guinzagli ? (

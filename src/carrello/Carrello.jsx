@@ -70,7 +70,7 @@ const Carrello = () => {
                       </ListGroup.Item>
 
                       <FaTrash
-                       className="text-success"
+                       className="text-success icona-animation"
                         style={{
                           cursor: "pointer",
                           display: "block",

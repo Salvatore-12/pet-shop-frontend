@@ -34,7 +34,7 @@ const handleAddToCart = (prodotto) => {
 return(
 
 <div>
-      <h2>Ciotole Per Gatti</h2>
+      <h2 className="titolo-prodotto">Ciotole Per Gatti</h2>
       <Container>
         <Row>
       {ciotoleGatto ? (

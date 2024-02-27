@@ -30,7 +30,7 @@ const CrochetteGatto = () => {
   };
   return (
     <div>
-      <h2>Crocchette Per Gatti</h2>
+      <h2 className="titolo-prodotto">Crocchette Per Gatti</h2>
       <Container>
         <Row>
           {crocchetteGatto ? (

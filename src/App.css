@@ -15,7 +15,10 @@ margin-right: 1%;
  
 }
 
-
+.titolo-prodotto{
+margin-left: 40px;
+margin-top: 10px;
+}
 
 
 
@@ -34,7 +37,11 @@ margin-top:10%;
 }
 
 .my-button:active {
-  transform: scale(1.05) translateX(10px); /* Effetto di ingrandimento e spostamento al click */
+  transform: scale(1.05) translateX(10px);
+  transition: transform 0.3s ease;
+}
+.icona-animation:active {
+  transform: scale(0.93);
   transition: transform 0.3s ease;
 }
 

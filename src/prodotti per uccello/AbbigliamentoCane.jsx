@@ -1,25 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionTypes, getCiotoleCane } from "../Redux/action";
-import {Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { ActionTypes,  getAbbigliamentoCane} from "../Redux/action";
+import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { RiShoppingCartLine } from "react-icons/ri";
 
-const CiotoleCane =()=>{
+
+const AbbigliamentoCane=()=>{
     const token = useSelector((state) => state.token);
-    const CiotoleCane = useSelector((state) => state.ciotoleCane);
+    const abbigliamentocane = useSelector((state) => state.abbigliamentoCane);
     const dispatch = useDispatch();
     const [isAnimating, setIsAnimating] = useState(false);
-
-    
+  
     useEffect(() => {
-    if (token) {
-    
-      dispatch(getCiotoleCane(token));  
-    }
-    
-    },[dispatch, token])
-
+      if (token) {
+        dispatch(getAbbigliamentoCane(token));
+      }
+    }, [dispatch, token]);
+  
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);
       dispatch({
@@ -31,16 +29,15 @@ const CiotoleCane =()=>{
         setIsAnimating(false);
       }, 1000);
     };
-
 return(
-    <div>
-      <h2 className="titolo-prodotto">Ciotole Per Cani</h2>
-        <Container>
-         <Row>
-          {CiotoleCane ? (
-           CiotoleCane.map((prodotto, index) => (
+  <div>
+     <h2 className="titolo-prodotto">Mangime Per Uccelli</h2>
+      <Container>
+        <Row>
+      {abbigliamentocane ? (
+        abbigliamentocane.map((prodotto, index) => (
             <Col md={3} key={index}>
-          <Card className="col-12 col-sm-6 col-md-4 col-lg-2  custom-card text-truncate" style={{ width: "15rem", marginBottom: "20px" }}>
+          <Card  className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate" style={{ width: "15rem", marginBottom: "20px" }}>
           <Link to={`/prodotti/${prodotto.idProdotto}`} className="text-black" style={{ textDecoration: 'none'}}>
             <Card.Img
               variant="top"
@@ -74,6 +71,7 @@ return(
       )}
       </Row>
       </Container>
-    </div>)
+  </div>  
+    )
 }
-export default CiotoleCane
+export default AbbigliamentoCane

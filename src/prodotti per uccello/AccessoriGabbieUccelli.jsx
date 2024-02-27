@@ -31,7 +31,7 @@ const AccessoriGabbiePerUccelli=()=>{
 
 return(
    <div>
-    <h2>Accessori Gabbie Per Uccelli </h2>
+    <h2 className="titolo-prodotto">Accessori Gabbie Per Uccelli </h2>
     <Container>
       <Row>
     {accessoriGabbieUccelli ? (

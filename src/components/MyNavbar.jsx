@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaCartShopping } from "react-icons/fa6";
 
 const MyNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(null);
@@ -220,18 +221,20 @@ const MyNavbar = () => {
             Cerca
           </Button>
         </Form>
-        <Button variant="outline-success text-black" href="/" onClick={handleLogout}>
+        <Button
+          variant="outline-success text-black"
+          href="/"
+          onClick={handleLogout}
+        >
           esci
         </Button>
-        <Button
+        <FaCartShopping
           onClick={(e) => {
             e.preventDefault();
             navigate("/carrello");
           }}
-          className="bg-success text-black fw-medium fw-medium ms-3  border-1 border-black"
-        >
-          vai al carrello
-        </Button>
+          className=" fs-4 text-success fw-medium ms-3 me-3  border-1 border-black icona-animation"
+        />
       </Container>
     </Navbar>
   );

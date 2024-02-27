@@ -32,7 +32,7 @@ const GabbiePerUccelli=()=>{
 
 return(
    <div>
-    <h2>Gabbie Per Uccelli</h2>
+    <h2 className="titolo-prodotto">Gabbie Per Uccelli</h2>
     <Container>
       <Row>
     {gabbieUccelli ? (

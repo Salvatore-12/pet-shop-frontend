@@ -33,7 +33,7 @@ const GiochiCane =()=> {
   
     return (
       <div>
-        <h2>Giochi Per Cani</h2>
+        <h2 className="titolo-prodotto">Giochi Per Cani</h2>
         <Container>
           <Row>
             {giochiCane? (

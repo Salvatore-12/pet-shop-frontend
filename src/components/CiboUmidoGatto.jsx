@@ -31,7 +31,7 @@ const CiboUmidoGatto =() =>{
   
     return (
       <div>
-        <h2>Cibo Umido Per Gatti</h2>
+        <h2 className="titolo-prodotto">Cibo Umido Per Gatti</h2>
         <Container>
           <Row>
             {ciboUmidoGatto ? (
