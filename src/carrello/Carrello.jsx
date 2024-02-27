@@ -58,10 +58,10 @@ const Carrello = () => {
                       style={{ height: "200px", objectFit: "cover" }}
                     />
                     <Card.Body className="custom-card-body">
-                      <Card.Title className="custom-card-title">
+                      <Card.Title className="custom-card-title text-truncate">
                         {prodotto.nome}
                       </Card.Title>
-                      <Card.Text className="custom-card-text">
+                      <Card.Text className="custom-card-text text-truncate">
                         {prodotto.descrizione}
                       </Card.Text>
 
@@ -70,7 +70,7 @@ const Carrello = () => {
                       </ListGroup.Item>
 
                       <FaTrash
-                       className="text-success icona-animation"
+                        className="text-success icona-animation"
                         style={{
                           cursor: "pointer",
                           display: "block",
@@ -87,7 +87,12 @@ const Carrello = () => {
           <span className="f fs-4">
             totale da pagare:=€{totale().toFixed(2)}
           </span>
-          <Button className="ms-3 mb-3 bg-success text-black" onClick={procediAlOrdine}>Procedi all'ordine</Button>
+          <Button
+            className="ms-3 mb-3 border-0 bg-success text-black"
+            onClick={procediAlOrdine}
+          >
+            Procedi all'ordine
+          </Button>
         </div>
       ) : (
         <p>totale={totale}</p>
