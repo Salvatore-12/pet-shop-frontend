@@ -1,4 +1,5 @@
 PARTE FRONT-END: 
+Pet-Shop
 PROGETTO FULL STACK - CAPSTONE 
 Il sito che ho creato è uno store di vendita oggetti per animali ovvero un Pet Shop,interamente dedicato alla vendita di oggetti per questi ultimi.Il mio sito presenta delle sezioni per  i vari prodotti per: Cane, Gatto e Uccelli.Le tecnologie da me utilizzate sono: React per la parte front-end e Spring Boot per la parte Back-end. PosteSQL per il database. Come editor di testo ho utilizzato: VSCode - front-end / Intellij back-end.
 
