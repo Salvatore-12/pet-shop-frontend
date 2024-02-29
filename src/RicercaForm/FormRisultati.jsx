@@ -1,14 +1,33 @@
 
+import { useState } from "react";
 import {  Card, Col, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-
+import { ActionTypes } from "../Redux/action";
+import { RiShoppingCartLine } from "react-icons/ri";
 const FormRisultati = () => {
+  const dispatch = useDispatch();
+  const [isAnimating, setIsAnimating] = useState(false);
   const location = useLocation();
   const searchResults = location.state.searchResults;
 
+  
   if (!searchResults || searchResults.length === 0) {
     return <div>Nessun risultato trovato</div>;
   }
+
+  const handleAddToCart = (prodotto) => {
+    setIsAnimating(true);
+    dispatch({
+      type: ActionTypes.AGGIUNGI_ALCARRELLO,
+      payload: prodotto,
+    });
+
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 1000);
+  };
+  
 
   return (
     <div>
@@ -41,6 +60,14 @@ const FormRisultati = () => {
                     <strong>Tipo di animale:</strong> {prodotto.tipoAnimale}
                   </Card.Text>
                 </Card.Body>
+                <Card.Body>
+                    <RiShoppingCartLine
+                      onClick={() => handleAddToCart(prodotto)}
+                      className={`my-cart-icon my-button text-success ${
+                        isAnimating ? "animate" : ""
+                      }`}
+                    />
+                    </Card.Body>
               </Card>
             </Link>
           </Col>
