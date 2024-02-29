@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Col, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, ListGroup, Modal, Row } from "react-bootstrap";
 import { ActionTypes, aggiungiOrdine } from "../Redux/action";
 import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
 
 const Carrello = () => {
   const token = useSelector((state) => state.token);
   const carrello = useSelector((state) => state.carrello);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [prodottoIdToDelete, setProdottoIdToDelete] = useState(null);
 
   const procediAlOrdine = () => {
     const listaProdotti = carrello.map((prodotto) => prodotto.idProdotto);
@@ -21,10 +24,19 @@ const Carrello = () => {
   };
 
   const rimuoviDalCarrello = (idProdotto) => {
-    dispatch({
-      type: ActionTypes.RIMUOVI_DAL_CARRELLO,
-      payload: idProdotto,
-    });
+    setProdottoIdToDelete(idProdotto);
+    setShowConfirmationModal(true);
+  };
+  const confirmDelete = () => {
+    if (prodottoIdToDelete) {
+      dispatch({
+        type: ActionTypes.RIMUOVI_DAL_CARRELLO,
+        payload: prodottoIdToDelete,
+      });
+    }
+    setShowConfirmationModal(false);
+
+    setProdottoIdToDelete(null);
   };
 
   const totale = () => {
@@ -84,6 +96,28 @@ const Carrello = () => {
               );
             })}
           </Row>
+          <Modal
+            show={showConfirmationModal}
+            onHide={() => setShowConfirmationModal(false)}
+          >
+            <Modal.Header closeButton className="bg-success-subtle">
+              <Modal.Title>Conferma eliminazione</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Sei sicuro di voler eliminare questo prodotto dal carrello?
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary text-black"
+                onClick={() => setShowConfirmationModal(false)}
+              >
+                Annulla
+              </Button>
+              <Button variant="danger text-black" onClick={confirmDelete}>
+                Elimina
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <span className="f fs-4">
             totale da pagare:=€{totale().toFixed(2)}
           </span>
