@@ -76,7 +76,7 @@ const MyNavbar = () => {
           src="https://cdn-icons-png.flaticon.com/128/1076/1076928.png"
           className="logo"
         ></img>
-        <Navbar.Brand href="/home">PetShop</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/home">PetShop</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

@@ -5,7 +5,7 @@ import {
   getGuinzagli,
 } from "../Redux/action";
 import { useEffect } from "react";
-import { Card, Carousel, Container, ListGroup } from "react-bootstrap";
+import { Card, Carousel, Container, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
@@ -42,38 +42,31 @@ const Homepage = () => {
         <h2 className="mt-2 mb-2 text-black">Tiragraffi Per Gatto</h2>
       </Link>
       <Container>
-        <Carousel>
+      <Carousel>
           {tiragraffiGatto ? (
             chunkArray(tiragraffiGatto, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
-                <div className="d-flex justify-content-between  align-items-center">
+                <Row className="justify-content-between align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
-                      className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"
+                      className="col-6 col-md-4 col-lg-2 custom-card text-truncate"
                     >
                       <Card.Img
                         variant="top"
                         src={prodotto.immagine}
                         alt={prodotto.nome}
-                        style={{
-                          height: "200px",
-                          width: "auto",
-                          objectFit: "cover",
-                        }}
+                        style={{ height: "200px", objectFit: "cover" }}
                       />
                       <Card.Body>
                         <Card.Title className="custom-card-title text-truncate fs-6">
                           {prodotto.nome}
                         </Card.Title>
-                        <ListGroup.Item className="custom-card-text">
-                          Prezzo: €{prodotto.prezzo.toFixed(2)}
-                        </ListGroup.Item>
+                        <Card.Text>Prezzo: €{prodotto.prezzo.toFixed(2)}</Card.Text>
                       </Card.Body>
-                      <ListGroup className="list-group-flush"></ListGroup>
                     </Card>
                   ))}
-                </div>
+                </Row>
               </Carousel.Item>
             ))
           ) : (
@@ -89,38 +82,31 @@ const Homepage = () => {
         <h2 className="mt-2 mb-2 text-black">Guizagli Per Cane</h2>
       </Link>
       <Container>
-        <Carousel>
+      <Carousel>
           {guinzagli ? (
             chunkArray(guinzagli, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
-                <div className="d-flex justify-content-between  align-items-center">
+                <Row className="justify-content-between align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
-                      className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"
+                      className="col-6 col-md-4 col-lg-2 custom-card text-truncate"
                     >
                       <Card.Img
                         variant="top"
                         src={prodotto.immagine}
                         alt={prodotto.nome}
-                        style={{
-                          height: "200px",
-                          width: "auto",
-                          objectFit: "cover",
-                        }}
+                        style={{ height: "200px", objectFit: "cover" }}
                       />
                       <Card.Body>
                         <Card.Title className="custom-card-title text-truncate fs-6">
                           {prodotto.nome}
                         </Card.Title>
-                        <ListGroup.Item className="custom-card-text">
-                          Prezzo: €{prodotto.prezzo.toFixed(2)}
-                        </ListGroup.Item>
+                        <Card.Text>Prezzo: €{prodotto.prezzo.toFixed(2)}</Card.Text>
                       </Card.Body>
-                      <ListGroup className="list-group-flush"></ListGroup>
                     </Card>
                   ))}
-                </div>
+                </Row>
               </Carousel.Item>
             ))
           ) : (
@@ -135,15 +121,15 @@ const Homepage = () => {
         <h2 className="mt-2 mb-2 text-black">Gabbie Per Uccello</h2>
       </Link>
       <Container>
-        <Carousel>
+      <Carousel>
           {gabbieUccelli ? (
             chunkArray(gabbieUccelli, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
-                <div className="d-flex justify-content-between  align-items-center mb-4">
+                <Row className="justify-content-between align-items-center">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
-                      className="col-12 col-sm-6 col-md-4 col-lg-2  custom-card text-truncate"
+                      className="col-6 col-md-4 col-lg-2 custom-card text-truncate"
                     >
                       <Card.Img
                         variant="top"
@@ -155,14 +141,11 @@ const Homepage = () => {
                         <Card.Title className="custom-card-title text-truncate fs-6">
                           {prodotto.nome}
                         </Card.Title>
-                        <ListGroup.Item className="custom-card-text">
-                          Prezzo: €{prodotto.prezzo.toFixed(2)}
-                        </ListGroup.Item>
+                        <Card.Text>Prezzo: €{prodotto.prezzo.toFixed(2)}</Card.Text>
                       </Card.Body>
-                      <ListGroup className="list-group-flush"></ListGroup>
                     </Card>
                   ))}
-                </div>
+                </Row>
               </Carousel.Item>
             ))
           ) : (
