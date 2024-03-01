@@ -22,10 +22,10 @@ const PagamentoSuccesso = () => {
             <div
               className="fs-6 fw rounded-5 px-4 py-2 cursor"
               onClick={() => {
-                navigate("/home");
+                navigate("/");
               }}
             >
-              Homepage
+              vai alla Home
             </div>
           </div>
         </Col>
