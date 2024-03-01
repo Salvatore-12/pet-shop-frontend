@@ -57,7 +57,7 @@ const Homepage = () => {
                         src={prodotto.immagine}
                         alt={prodotto.nome}
                         style={{
-                          height: "150px",
+                          height: "200px",
                           width: "auto",
                           objectFit: "cover",
                         }}
@@ -104,7 +104,7 @@ const Homepage = () => {
                         src={prodotto.immagine}
                         alt={prodotto.nome}
                         style={{
-                          height: "150px",
+                          height: "200px",
                           width: "auto",
                           objectFit: "cover",
                         }}
@@ -149,7 +149,7 @@ const Homepage = () => {
                         variant="top"
                         src={prodotto.immagine}
                         alt={prodotto.nome}
-                        style={{ height: "150px", objectFit: "cover" }}
+                        style={{ height: "200px", objectFit: "cover" }}
                       />
                       <Card.Body>
                         <Card.Title className="custom-card-title text-truncate fs-6">

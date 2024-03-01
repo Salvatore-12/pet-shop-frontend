@@ -93,7 +93,7 @@ const Ordine = () => {
 
         <div className="separator"></div>
 
-        {/* Renderizza il componente StripeOption1 e passa i dati dell'ordine */}
+        {/* Renderizzo il componente StripeOption1 e passo i dati dell'ordine */}
         <StripeOption1 ordine={ultimoOrdine} />
       </div>
     ) : (

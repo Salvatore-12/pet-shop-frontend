@@ -32,7 +32,7 @@ const StripeOption1 = ({ ordine }) => {
   };
   return (
     <button
-      className=" bg-success px-4 py-2 rounded fw-bold text-black"
+      className=" bg-success my-3 px-4 py-2 rounded fw-bold text-black"
       onClick={handleClick}
     >
       acquista
