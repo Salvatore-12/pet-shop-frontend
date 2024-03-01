@@ -41,7 +41,7 @@ const Prodotto = () => {
     window.history.back();
   };
 
-  const handleAddToCart = (prodotto,) => {
+  const handleAddToCart = (prodotto) => {
     setIsAnimating(true);
     dispatch({
       type: ActionTypes.AGGIUNGI_ALCARRELLO,
@@ -50,11 +50,11 @@ const Prodotto = () => {
 
     setTimeout(() => {
       setIsAnimating(false);
-    }, 1000); 
+    }, 1000);
   };
 
   return (
-    <Container fluid className="mt-3">
+    <Container fluid className="mt-4 mb-5 ms-3">
       <Card style={{ maxWidth: "80%" }}>
         <Link
           to="#"
@@ -83,18 +83,25 @@ const Prodotto = () => {
                   <h4>Descrizione:</h4>
                   {prodotto.descrizione}
                 </Card.Text>
-                <Card.Text>Prezzo: €{prodotto.prezzo.toFixed(2)}</Card.Text>
-                <Card.Text>Categoria: {prodotto.categoria}</Card.Text>
-                <Card.Text>Tipo di animale: {prodotto.tipoAnimale}</Card.Text>
+                <Card.Text>
+                  <span className="fw-semibold">Prezzo:</span> €
+                  {prodotto.prezzo.toFixed(2)}
+                </Card.Text>
+                <Card.Text>
+                  <span className="fw-semibold">Categoria:</span>{" "}
+                  {prodotto.categoria}
+                </Card.Text>
+                <Card.Text>
+                  <span className="fw-semibold">Tipo di animale:</span>{" "}
+                  {prodotto.tipoAnimale}
+                </Card.Text>
               </Card.Body>
               <RiShoppingCartLine
-                      onClick={() =>
-                        handleAddToCart(prodotto)
-                      }
-                      className={`my-cart-icon my-button text-success ${
-                        isAnimating ? "animate" : ""
-                      }`}
-                    />
+                onClick={() => handleAddToCart(prodotto)}
+                className={`my-cart-icon my-button text-success ${
+                  isAnimating ? "animate" : ""
+                }`}
+              />
             </Card.Body>
           </Col>
         </Row>
