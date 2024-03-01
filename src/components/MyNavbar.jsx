@@ -10,7 +10,7 @@ import {
   Popover,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 
 const MyNavbar = () => {
@@ -22,9 +22,7 @@ const MyNavbar = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-  };
+
 
   const handleSearch = () => {
     const url = `http://localhost:3001/prodotti/prodotti-per-parte-del-nome?parteDelNome=${encodeURIComponent(
@@ -213,18 +211,14 @@ const MyNavbar = () => {
         </Form>
         <Button className="me-3"
           variant="outline-success text-black"
-          onClick={()=>{navigate("/login")}}
+          onClick={()=>{
+            localStorage.clear();
+            navigate("/login")}}
         >
           accedi
         </Button>
 
-        <Button
-          variant="outline-success text-black"
-          href="/"
-          onClick={handleLogout}
-        >
-          esci
-        </Button>
+        
         <FaCartShopping
           onClick={(e) => {
             e.preventDefault();
