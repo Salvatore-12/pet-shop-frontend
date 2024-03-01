@@ -139,7 +139,7 @@ const Homepage = () => {
           {gabbieUccelli ? (
             chunkArray(gabbieUccelli, 4).map((chunk, index) => (
               <Carousel.Item key={index}>
-                <div className="d-flex justify-content-between  align-items-center">
+                <div className="d-flex justify-content-between  align-items-center mb-4">
                   {chunk.map((prodotto, idx) => (
                     <Card
                       key={idx}
