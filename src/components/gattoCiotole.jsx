@@ -12,12 +12,8 @@ const dispatch = useDispatch();
 const [isAnimating, setIsAnimating] = useState(false);
 
 useEffect(() => {
-if (token) {
-
-  dispatch(getCiotoleGatto(token));  
-}
-
-},[dispatch, token])
+  dispatch(getCiotoleGatto());  
+},[dispatch])
 
 const handleAddToCart = (prodotto) => {
   setIsAnimating(true);

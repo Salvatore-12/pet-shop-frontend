@@ -121,12 +121,28 @@ const Carrello = () => {
           <span className="f fs-4">
             totale da pagare:=€{totale().toFixed(2)}
           </span>
-          <Button
-            className="ms-3 mb-3 border-0 bg-success text-black"
-            onClick={procediAlOrdine}
-          >
-            Procedi all'ordine
-          </Button>
+          {token ? (
+            <Button
+              className="ms-3 mb-3 border-0 bg-success text-black"
+              onClick={procediAlOrdine}
+            >
+              Procedi all'ordine
+            </Button>
+          ) : (
+            <div className="d-flex flex-column align-items-center">
+              <h6 className="mb-2">
+                per procedere all'ordine devi prima registrarti!
+              </h6>
+              <Button
+                className="mt-1 bg-success text-black border-0"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                registrati
+              </Button>
+            </div>
+          )}
         </div>
       ) : (
         <p>totale={totale}</p>

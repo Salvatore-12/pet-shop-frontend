@@ -16,23 +16,16 @@ const Homepage = () => {
   const gabbieUccelli = useSelector((state) => state.gabbieUccelli);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getGabbieUccelli(token));
-    }
-  }, [dispatch, token]);
+      dispatch(getGabbieUccelli());
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(getGuinzagli(token));
-    }
-  }, [dispatch, token]);
+  useEffect(() => {  
+      dispatch(getGuinzagli());
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(getGattoTiragraffio(token));
-      console.log("ecco il token", token);
-    }
-  }, [dispatch, token]);
+  useEffect(() => { 
+      dispatch(getGattoTiragraffio());
+  }, [dispatch]);
 
   const chunkArray = (array, size) => {
     const chunkedArray = [];

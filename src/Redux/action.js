@@ -38,13 +38,13 @@ export const setAbbigliamentoCane = (AbbigliamentoCane) => ({
     payload: AbbigliamentoCane
 })
 
-export const getAbbigliamentoCane = (token) => async (dispatch) => {
+export const getAbbigliamentoCane = ()=> async (dispatch) => {
     const URLMangime = "http://localhost:3001/prodotti/abbigliamento-cane";
     try {
         const response = await fetch(URLMangime, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
+                "Content-Type":"application/json"
             }
         });
         if (response.ok) {
@@ -498,13 +498,13 @@ export const setCuccieLettinoGatto = (CuccieLettinoGatto) => ({
     payload: CuccieLettinoGatto
 });
 
-export const getCuccieELettini = (token) => async (dispatch) => {
+export const getCuccieELettini = () => async (dispatch) => {
     const URLCuccieLettiniGatto = "http://localhost:3001/prodotti/cuccie-lettini-gatto";
     try {
         const response = await fetch(URLCuccieLettiniGatto, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
+                "Content-Type":"application/json"
             }
         });
         if (response.ok) {
@@ -540,13 +540,13 @@ export const setGabbieUccelli = (gabbie) => ({
     payload: gabbie
 });
 
-export const getCiotoleGatto = (token) => async (dispatch) => {
+export const getCiotoleGatto = () => async (dispatch) => {
     const URLgatto = "http://localhost:3001/prodotti/ciotole-gatto";
     try {
         const response = await fetch(URLgatto, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
+                "Content-Type":"application/json"
             }
         });
         if (response.ok) {
@@ -572,13 +572,13 @@ export const getCiotoleGatto = (token) => async (dispatch) => {
     }
 };
 
-export const getGabbieUccelli = (token) => async (dispatch) => {
+export const getGabbieUccelli = () => async (dispatch) => {
     const URLGuinzagli = "http://localhost:3001/prodotti/prodotti-gabbie-uccelli";
     try {
         const response = await fetch(URLGuinzagli, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
+                "Content-Type":"application/json"
             }
         });
         if (response.ok) {
@@ -608,13 +608,13 @@ export const setGuinzagli = (guinzagli) => ({
     type: ActionTypes.SET_GUINZAGLIO,
     payload: guinzagli
 });
-export const getGuinzagli = (token) => async (dispatch) => {
+export const getGuinzagli = () => async (dispatch) => {
     const URLGuinzagli = "http://localhost:3001/prodotti/prodotti-cane-guinzagli";
     try {
         const response = await fetch(URLGuinzagli, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`,
+                "Content-Type":"application/json"
             }
         });
         if (response.ok) {
@@ -645,7 +645,6 @@ export const setError = (errorMessage) => ({
     payload: errorMessage
 });
 
-
 export const logoutUtente = () => ({
     type: ActionTypes.LOGOUT_UTENTE
 });
@@ -660,8 +659,38 @@ export const setGattoTiragraffi = (tiragraffi) => ({
     payload: tiragraffi
 });
 
+export const getGattoTiragraffio = () => async (dispatch) => {
+    const URL = "http://localhost:3001/prodotti/prodotti-gatto-tiragraffi";
+    try {
+        const response = await fetch(URL, {
+            method: "GET",
+            headers: {
+                "Content-Type":"application/json"
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(setGattoTiragraffi(data));
+            console.log("Dati ricevuti:", data);
+            return data;
+        } else {
+            const errorMessage = await response.text();
+            if (response.status === 401) {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
+            } else {
+                // Invia un'azione di errore al reducer
+                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
+            }
+            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
+        }
+    } catch (error) {
+        console.error("Errore:", error);
+        // Invia un'azione di errore al reducer
+        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
+    }
 
-
+};
 
 export const login = (body) => {
     return async (dispatch) => {
@@ -688,37 +717,6 @@ export const login = (body) => {
         }
     };
 };
-//3)
-export const getGattoTiragraffio = (token) => async (dispatch) => {
-    const URL = "http://localhost:3001/prodotti/prodotti-gatto-tiragraffi";
-    try {
-        const response = await fetch(URL, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        });
-        if (response.ok) {
-            const data = await response.json();
-            dispatch(setGattoTiragraffi(data));
-            console.log("Dati ricevuti:", data);
-            return data;
-        } else {
-            const errorMessage = await response.text();
-            if (response.status === 401) {
-                // Invia un'azione di errore al reducer
-                dispatch({ type: ActionTypes.SET_ERROR, payload: "Token JWT non valido o scaduto. Effettua di nuovo l'accesso." });
-            } else {
-                // Invia un'azione di errore al reducer
-                dispatch({ type: ActionTypes.SET_ERROR, payload: errorMessage || "Errore durante la richiesta dei dati dei tiragraffi" });
-            }
-            throw new Error(errorMessage || "Errore durante la richiesta dei dati dei tiragraffi");
-        }
-    } catch (error) {
-        console.error("Errore:", error);
-        // Invia un'azione di errore al reducer
-        dispatch({ type: ActionTypes.SET_ERROR, payload: error.message || "Errore durante la richiesta dei dati dei tiragraffi" });
-    }
 
-};
+
 

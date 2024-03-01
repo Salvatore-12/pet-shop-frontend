@@ -11,11 +11,8 @@ const GiochiGatto =() =>{
     const [isAnimating, setIsAnimating] = useState(false);
   
     useEffect(() => {
-      if (token) {
-        dispatch(getGiochiGatto(token));
-        console.log("ecco il token", token);
-      }
-    }, [dispatch, token]);
+        dispatch(getGiochiGatto());
+    }, [dispatch]);
   
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

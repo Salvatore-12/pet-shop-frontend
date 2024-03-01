@@ -38,7 +38,7 @@ const Register = () => {
         console.log(data);
         alert("utente registrato corretamente!");
         setTimeout(() => {
-          navigate("/");
+          navigate("/login");
         }, 500);
       })
       .catch((err) => {
@@ -142,7 +142,7 @@ const Register = () => {
                     type="submit"
                     onClick={(e)=>{
                     e.preventDefault();
-                    navigate("/");
+                    navigate("/login");
                     }}
                   >
                     Esci

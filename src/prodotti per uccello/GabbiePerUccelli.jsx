@@ -12,10 +12,10 @@ const GabbiePerUccelli=()=>{
     const [isAnimating, setIsAnimating] = useState(false);
   
     useEffect(() => {
-      if (token) {
-        dispatch(getGabbieUccelli(token));
-      }
-    }, [dispatch, token]);
+      
+        dispatch(getGabbieUccelli());
+      
+    }, [dispatch]);
 
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

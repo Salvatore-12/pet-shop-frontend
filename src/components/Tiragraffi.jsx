@@ -12,10 +12,10 @@ const Tiragraffi = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getGattoTiragraffio(token));
-    }
-  }, [dispatch, token]);
+   
+      dispatch(getGattoTiragraffio());
+   
+  }, [dispatch]);
 
   const handleAddToCart = (prodotto) => {
     setIsAnimating(true);

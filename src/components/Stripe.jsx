@@ -9,7 +9,7 @@ const StripeOption1 = ({ ordine }) => {
     try {
       const stripe = await stripePromise;
 
-      // Effettua il reindirizzamento al checkout di Stripe utilizzando i dati dell'ordine
+      // Effettuo il reindirizzamento al checkout di Stripe utilizzando i dati dell'ordine
       const { error } = await stripe.redirectToCheckout({
         lineItems: ordine.dettagliOrdine.map((dettaglio) => ({
           price: dettaglio.priceId,

@@ -12,10 +12,10 @@ const Guinzaglio = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getGuinzagli(token));
-    }
-  }, [dispatch, token]);
+    
+      dispatch(getGuinzagli());
+   
+  }, [dispatch]);
 
   const handleAddToCart = (prodotto) => {
     setIsAnimating(true);

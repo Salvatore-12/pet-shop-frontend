@@ -76,7 +76,7 @@ const Login = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(login(body));
-                      navigate("/home");
+                      navigate("/");
                     }}
                   >
                     Accedi

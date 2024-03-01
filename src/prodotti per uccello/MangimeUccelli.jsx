@@ -12,10 +12,8 @@ const MangimeUccelli = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getMangimeUccelli(token));
-    }
-  }, [dispatch, token]);
+      dispatch(getMangimeUccelli());
+  }, [dispatch]);
 
   const handleAddToCart = (prodotto) => {
     setIsAnimating(true);

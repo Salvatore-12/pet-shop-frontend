@@ -31,12 +31,8 @@ const MyNavbar = () => {
       searchTerm
     )}`;
 
-    if (!token) {
-      console.error("Token non trovato.");
-      return;
-    }
+    
     const headers = {
-      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     };
 
@@ -73,13 +69,7 @@ const MyNavbar = () => {
     setLeaveTimer(timer);
   };
 
-  const location = useLocation();
-  const isLoginOrRegister =
-    location.pathname === "/" || location.pathname === "/register";
-
-  if (isLoginOrRegister) {
-    return null;
-  }
+  
 
   return (
     <Navbar expand="lg" className="bg-success-subtle">
@@ -96,7 +86,7 @@ const MyNavbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <OverlayTrigger
               trigger="hover 'focus'"
               placement="bottom"
@@ -221,6 +211,13 @@ const MyNavbar = () => {
             Cerca
           </Button>
         </Form>
+        <Button className="me-3"
+          variant="outline-success text-black"
+          onClick={()=>{navigate("/login")}}
+        >
+          accedi
+        </Button>
+
         <Button
           variant="outline-success text-black"
           href="/"

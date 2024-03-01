@@ -12,10 +12,8 @@ const CrochetteGatto = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getCrocchetteGatto(token));
-    }
-  }, [dispatch, token]);
+    dispatch(getCrocchetteGatto());
+  }, [dispatch]);
 
   const handleAddToCart = (prodotto) => {
     setIsAnimating(true);

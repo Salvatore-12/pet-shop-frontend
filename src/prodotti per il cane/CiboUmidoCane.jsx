@@ -14,10 +14,8 @@ const CiboUmidoCane =()=>{
 
   
     useEffect(() => {
-      if (token) {
-        dispatch(getCiboUmidoCane(token));
-      }
-    }, [dispatch, token]);
+        dispatch(getCiboUmidoCane());
+    }, [dispatch]);
 
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

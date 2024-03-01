@@ -13,10 +13,8 @@ const AbbigliamentoCane=()=>{
     const [isAnimating, setIsAnimating] = useState(false);
   
     useEffect(() => {
-      if (token) {
-        dispatch(getAbbigliamentoCane(token));
-      }
-    }, [dispatch, token]);
+        dispatch(getAbbigliamentoCane()); 
+    },[dispatch]);
   
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

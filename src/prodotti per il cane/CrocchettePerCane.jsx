@@ -12,10 +12,8 @@ const CrocchettePerCane = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      dispatch(getCrocchetteCane(token));
-    }
-  }, [dispatch, token]);
+      dispatch(getCrocchetteCane());
+  }, [dispatch]);
 
   const handleAddToCart = (prodotto) => {
     setIsAnimating(true);

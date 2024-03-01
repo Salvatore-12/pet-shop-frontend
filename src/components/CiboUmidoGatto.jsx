@@ -10,12 +10,9 @@ const CiboUmidoGatto =() =>{
     const dispatch = useDispatch();
     const [isAnimating, setIsAnimating] = useState(false);
   
-    useEffect(() => {
-      if (token) {
-        dispatch(getCiboUmidoGatto(token));
-        console.log("ecco il token", token);
-      }
-    }, [dispatch, token]);
+    useEffect(() => {  
+        dispatch(getCiboUmidoGatto());
+    }, [dispatch]);
   
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

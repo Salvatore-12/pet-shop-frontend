@@ -13,12 +13,8 @@ const CiotoleCane =()=>{
 
     
     useEffect(() => {
-    if (token) {
-    
-      dispatch(getCiotoleCane(token));  
-    }
-    
-    },[dispatch, token])
+      dispatch(getCiotoleCane());  
+    },[dispatch])
 
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

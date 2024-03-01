@@ -12,11 +12,8 @@ const CucciaGatto = ()=>{
     const [isAnimating, setIsAnimating] = useState(false);
   
     useEffect(() => {
-      if (token) {
-        dispatch(getCuccieELettini(token));
-        console.log("ecco il token", token);
-      }
-    }, [dispatch, token]);
+        dispatch(getCuccieELettini());
+    }, [dispatch]);
 
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);

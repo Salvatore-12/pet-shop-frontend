@@ -67,8 +67,8 @@ function App() {
     <BrowserRouter>
       <MyNavbar />
       <Routes>
-        <Route path="/home" element={<Homepage />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/prodotti/:idProdotto" element={<Prodotto/>} />
         <Route path='/tiragraffi' element={<Tiragraffi />}></Route>

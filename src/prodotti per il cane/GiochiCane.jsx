@@ -14,10 +14,8 @@ const GiochiCane =()=> {
 
   
     useEffect(() => {
-      if (token) {
-        dispatch(getGiochiCane(token));
-      }
-    }, [dispatch, token]);
+        dispatch(getGiochiCane());
+    }, [dispatch]);
 
     const handleAddToCart = (prodotto) => {
       setIsAnimating(true);
