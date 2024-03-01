@@ -5,7 +5,7 @@ import {
   getGuinzagli,
 } from "../Redux/action";
 import { useEffect } from "react";
-import { Card, Carousel, Container, ListGroup} from "react-bootstrap";
+import { Card, Carousel, Container, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
@@ -16,15 +16,15 @@ const Homepage = () => {
   const gabbieUccelli = useSelector((state) => state.gabbieUccelli);
 
   useEffect(() => {
-      dispatch(getGabbieUccelli());
+    dispatch(getGabbieUccelli());
   }, [dispatch]);
 
-  useEffect(() => {  
-      dispatch(getGuinzagli());
+  useEffect(() => {
+    dispatch(getGuinzagli());
   }, [dispatch]);
 
-  useEffect(() => { 
-      dispatch(getGattoTiragraffio());
+  useEffect(() => {
+    dispatch(getGattoTiragraffio());
   }, [dispatch]);
 
   const chunkArray = (array, size) => {
@@ -57,7 +57,7 @@ const Homepage = () => {
                         src={prodotto.immagine}
                         alt={prodotto.nome}
                         style={{
-                          height: "auto",
+                          height: "150px",
                           width: "auto",
                           objectFit: "cover",
                         }}

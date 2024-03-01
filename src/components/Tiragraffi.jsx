@@ -50,11 +50,7 @@ const Tiragraffi = () => {
                       variant="top"
                       src={prodotto.immagine}
                       alt={prodotto.nome}
-                      style={{
-                        height: "200px",
-                        width: "200px",
-                        objectFit: "cover",
-                      }}
+                      style={{ height: "200px", objectFit: "cover" }}
                     />
                     <Card.Body className="custom-card-body">
                       <Card.Title className="text-truncate fs-6 w-100">
