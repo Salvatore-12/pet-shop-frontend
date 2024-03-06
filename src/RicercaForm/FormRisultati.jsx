@@ -35,12 +35,13 @@ const FormRisultati = () => {
       <Row xs={1} md={2} lg={3} className="g-4 mx-4">
         {searchResults.map((prodotto, index) => (
           <Col key={index}>
-            <Link
+           
+              <Card className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"  style={{ width: "18rem" }}>
+              <Link
               to={`/prodotti/${prodotto.idProdotto}`}
               className="text-black"
               style={{ textDecoration: "none" }}
             >
-              <Card className="col-12 col-sm-6 col-md-4 col-lg-2 custom-card text-truncate"  style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top"
                   src={prodotto.immagine}
@@ -60,6 +61,7 @@ const FormRisultati = () => {
                     <strong>Tipo di animale:</strong> {prodotto.tipoAnimale}
                   </Card.Text>
                 </Card.Body>
+                </Link>
                 <Card.Body>
                     <RiShoppingCartLine
                       onClick={() => handleAddToCart(prodotto)}
@@ -69,7 +71,7 @@ const FormRisultati = () => {
                     />
                     </Card.Body>
               </Card>
-            </Link>
+            
           </Col>
         ))}
       </Row>
