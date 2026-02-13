@@ -23,8 +23,8 @@ const initialstate = {
     error: null,
     loadingAggiungiAlCarrello: true,
     errorAggiungiAlCarrello: null,
-    utimoOrdine:null
-
+    utimoOrdine:null,
+    ordiniUtente: []
 
 };
 console.log(initialstate);
@@ -123,6 +123,12 @@ const reducer = (state = initialstate, action) => {
                 ...state,
                 ordine: action.payload
             };
+
+        case ActionTypes.SET_ORDINI_UTENTE:
+            return {
+               ...state,
+               ordiniUtente: action.payload,
+            };    
         
         case ActionTypes.SET_UTENTE_TOKEN:
             return {

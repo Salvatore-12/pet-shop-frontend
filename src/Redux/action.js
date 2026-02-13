@@ -27,9 +27,12 @@ export const ActionTypes = {
     //5)CARRELLO
     AGGIUNGI_ALCARRELLO: " AGGIUNGI_ALCARRELLO",
     RIMUOVI_DAL_CARRELLO: "RIMUOVI_DAL_CARRELLO",
-    SET_ORDINE: 'SET_ORDINE',
-    AGGIUNGI_ULTIMO_ORDINE: "AGGIUNGI_ULTIMO_ORDINE",
-    SVUOTA_CARRELLO: "SVUOTA_CARRELLO"
+    SVUOTA_CARRELLO: "SVUOTA_CARRELLO",
+    //5)ORDINE
+    SET_ORDINE: "SET_ORDINE",
+     SET_ORDINI_UTENTE: "SET_ORDINI_UTENTE",
+    AGGIUNGI_ULTIMO_ORDINE: "AGGIUNGI_ULTIMO_ORDINE"
+    
 
 
 };
@@ -417,6 +420,24 @@ export const aggiungiOrdine = (token, body) => {
             console.log(error);
         }
     };
+};
+
+export const OrdiniUtente = (token) => async (dispatch) => {
+  try {
+    const response = await fetch("http://localhost:3001/ordine/utente", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    if (!response.ok) throw new Error("Errore nel recupero degli ordini");
+    const data = await response.json();
+    dispatch({
+      type: ActionTypes.SET_ORDINI_UTENTE,
+      payload: data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const setGiochiGatto = (giochiGatto) => ({
