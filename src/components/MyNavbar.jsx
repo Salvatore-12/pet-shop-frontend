@@ -190,6 +190,10 @@ const MyNavbar = () => {
                 Uccello
               </Nav.Link>
             </OverlayTrigger>
+            <Nav.Link 
+              href="/i-miei-ordini">
+              I miei ordini
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Form className="d-flex me-5 pe-4">
