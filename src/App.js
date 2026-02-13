@@ -15,6 +15,7 @@ import CucciaGatto from './components/CuccieGatto';
 import CrochetteGatto from './components/CrocchetteGatto';
 import Carrello from './carrello/Carrello';
 import Ordine from './carrello/Ordine';
+import IMieiOrdini from './carrello/IMieiOrdini';
 import FormRisultati from './RicercaForm/FormRisultati';
 import CiotoleCane from './prodotti per il cane/CiotoleCane';
 import CrocchettePerCane from './prodotti per il cane/CrocchettePerCane';
@@ -88,6 +89,7 @@ function App() {
         <Route path='/mangimeUccelli' element={<MangimeUccelli/>} />
         <Route path='/accessoriGabbieUccelli' element={<AccessoriGabbiePerUccelli/>}/>
         <Route path='/carrello' element={<Carrello />} />
+        <Route path='/i-miei-ordini' element={<IMieiOrdini />} />
         <Route path='/ordine/:idOrdine' element={<Ordine />} />
         <Route path="/successo" element={<PagamentoSuccesso/>} />
         <Route path='/risultati-perNome' element={<FormRisultati  searchResults={searchResults} />} />
